@@ -1,0 +1,36 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">红包</span>
+    </div>
+	<div class="fake"></div>
+	<ul class="validvoucher">
+		<li class="selectedvoucher">
+			<div class="voucherdesc fl">
+				<h6>新用户大礼包</h6>
+				<p class="lifespan">使用期限&nbsp;<span>2016.03.24 - 2016.10.24</span></p>
+			</div>
+			<div class="voucherfig fr">¥30</div>
+		</li>
+	</ul>
+	<ul class="validvoucher invalidvoucher">
+		<li>
+			<div class="voucherdesc fl">
+				<h6>新用户大礼包<span class="lifespan">（已过期）</span></h6>
+				<p class="lifespan">使用期限&nbsp;<span>2016.03.24 - 2016.10.24</span></p>
+			</div>
+			<div class="voucherfig fr">¥30</div>
+		</li>
+	</ul>
+#parse("include/footer_js.vm")
+<script>
+$(".validvoucher li").css("height",$(this).width()*0.193);
+$(".validvoucher li").css("line-height",$(this).width()*0.193+'px');
+window.onresize=function(){
+	$(".validvoucher li").css("height",$(this).width()*0.193);
+	$(".validvoucher li").css("line-height",$(this).width()*0.193+'px');
+}
+</script>
+</body>
+
+</html>

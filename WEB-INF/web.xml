@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>hotel-web</display-name>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>hotel-web.root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/*.xml</param-value>
+	</context-param>
+	<filter>
+		<description>字符集过滤器</description>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<description>字符集编码</description>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 验证码 -->
+	<filter>
+		<filter-name>CaptchaFilter</filter-name>
+		<filter-class>com.bankwel.hotel.web.filter.CaptchaFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CaptchaFilter</filter-name>
+		<url-pattern>/captcha/*</url-pattern>
+	</filter-mapping>
+	<!-- 登录验证 -->
+	<filter>
+		<filter-name>authFilter</filter-name>
+		<filter-class>com.bankwel.hotel.web.filter.AuthFilter</filter-class>
+		<init-param>
+			<param-name>redirectPage</param-name>
+			<param-value>index</param-value>
+		</init-param>
+		<init-param>
+			<!-- 白名单(可以不登录访问)。列表项之间使用逗号进行分隔。可使用正则表达式。#号后为注释 -->
+			<param-name>whiteList</param-name>
+			<param-value>
+				^/?css/.*,
+				^/?js/.*,	
+				^/?img/.*,
+				^/?wx.do,
+				^/?redirect,
+				^/?jcaptcha/.*,
+				^/?account/checkJcaptcha,
+				^/?account/sendMessage,
+				^/?account/checkMobileCode,
+				^/?hotel/notifyOrder,
+				^/?hotel/getRecomondHotel,
+				^/?logon,
+				^/?logon/.*,
+				^/?city/.*,
+				^/?hotel/getHotelsByName,
+			</param-value>
+		</init-param>
+		<init-param>
+			<!-- 黑名单(禁止未登录访问)，列表项之间使用逗号进行分隔。可使用正则表达式。#号后为注释 -->
+			<param-name>blackList</param-name>
+			<param-value></param-value>
+		</init-param>
+		<init-param>
+			<param-name>webList</param-name>
+			<param-value>
+				
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>authFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+<!-- 验证码图片生成拦截器，需要加到白名单里面 -->
+	<filter>  
+		  <filter-name>JCaptchaFilter</filter-name>  
+		  <filter-class>   
+		    com.bankwel.hotel.common.jcaptcha.JCaptchaFilter
+		  </filter-class>  
+	</filter>  
+	<filter-mapping>  
+		    <filter-name>JCaptchaFilter</filter-name>  
+		    <url-pattern>/jcaptcha/*</url-pattern>  
+	</filter-mapping>   
+
+	<listener>
+		<description>spring监听器</description>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+
+
+
+	<servlet>
+		<servlet-name>weixinServlet</servlet-name>
+		<servlet-class>com.bankwel.hotel.web.servlet.WeixinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>weixinServlet</servlet-name>
+		<url-pattern>/wx.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description>spring mvc servlet</description>
+		<servlet-name>springMvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<description>spring mvc 配置文件</description>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/ghotelrrorPage?errCode=404</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/ghotelrrorPage?errCode=500</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/common/ghotelrrorPage?errCode=400</location>
+	</error-page>
+</web-app>

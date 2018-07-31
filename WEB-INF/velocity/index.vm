@@ -1,0 +1,128 @@
+#set($ScriptLocation=true)
+#set($ScriptVerify=true)
+#parse("include/header.vm")
+	<input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="statebox clearfix"> 
+        <a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">酒店查询</span>
+		<a href="$ctx/account/index?openid=${openid}" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+    </div>
+    <div class="fake"></div>
+	<div class="hotelQuery">
+		<ul class="queryWay clearfix">	
+			<li class="selectedWay">精准预定</li>
+			<li>按需找房</li>
+		</ul>
+		<div class="queryCondition">
+			<div class="clearfix">
+				<div class="destSetion fl">
+					<p class="fillDesc">目的地</p>
+					<div class="selectDest" id="mylocation">
+						<span class="destination" id="locationAdd"></span>
+						<em></em>
+					</div>
+				</div>
+				<!-- <div class="myLocation fr" id="locate">
+					<em></em>
+					<span>我的位置</span>
+				</div> -->
+			</div>
+			<div class="staytime clearfix">
+				<div class="checkintime fl">
+					<p class="fillDesc">入住</p>
+					<div class="selectDest">
+						<input type="text" id="checkintime" />
+						<em></em>
+					</div>
+				</div>
+				<span class="livedate">共1晚</span>
+				<div class="leavetime fr">
+					<p class="fillDesc">离店</p>
+					<div class="selectDest">
+						<input type="text" id="leavetime" />
+						<em></em>
+					</div>
+				</div>
+			</div>
+			<div class="inphotel querymethod selectedmethod clearfix">
+				<div class="hotelNameSearch">
+					<span class="infoname hotelname">酒店全称</span>
+					<div class="fullnametip fl">
+						<input type="text" class="hotelfullname ellipsis" id="hotelname" />
+						<div class="input-writetip">请输入酒店全称</div>
+					</div>
+					<div id="page-infinite-scroll-bottom" class="page page-current hotelNameList">
+						<div class="content infinite-scroll infinite-scroll-bottom" id="content" data-distance="100">
+				        	<div class="list-block">
+				            	<ul class="list-container">
+				            	</ul>
+				        	</div>
+				          <!-- 加载提示符 -->
+				          <div class="infinite-scroll-preloader">
+				              <div class="preloader"></div>
+				          </div>
+				          <div class="nomoredata">没有更多数据了</div>
+				      </div>
+			      </div>
+				</div>
+			</div>
+			<div class="querymethod">
+				<div class="jsKeyword clearfix">
+					<div class="bedtype areabox fl" id="area">
+		   				<span class="keywordArea deleteItem" id="areaInp"></span>
+		   				<span class="input-writetip">关键字/位置/商圈</span>
+		   				<em class="gotoselect"></em>
+		   			</div>
+		   			<a href="javascript:;" class="cancelSelect" id="areaDelete"></a>
+		   		</div>
+				<div class="jsKeyword clearfix">
+	    			<div class="bedtype areabox open-popup fl" data-popup=".priceStarpopup">
+		   				<span class="pricetarInp deleteItem" id="pricetarInp"></span>
+		   				<span class="input-writetip">价格/星级</span>
+		   				<em class="gotoselect"></em>
+		   			</div>
+		   			<a href="javascript:;" class="cancelSelect" id="priceDelete"></a>
+	   			</div>
+			</div>
+			<div class="bedtype clearfix">
+				<span class="infoname">床型</span>
+				<input type="text" value="不限" id="bedtype" />
+				<em></em>
+			</div>
+			<div class="bedtype clearfix">
+				<span class="infoname">更多需求</span>
+				<input type="text" maxlength="30" id="remark" />
+			</div>
+			<p class="redtip"><i>*</i>注：床型酒店尽量满足，但不能保证</p>
+			<p class="clearfix"><a href="javascript:;" class="searchNow" id="searchNow">查询</a></p>
+		</div>
+	</div>
+	<div class="popup priceStarpopup">
+		<div class="content-block priceStarbox">
+			<h6 class="selectname">价格(单选)</h6>
+			<ul class="choosePrice clearfix">
+				<li>不限</li>
+				<li>¥150元以下</li>
+				<li>¥150 - ¥300</li>
+				<li>¥301 - ¥450</li>
+				<li>¥451 - ¥600</li>
+				<li>¥601 - ¥1000</li>
+				<li>¥1000以上</li>
+			</ul>
+			<h6 class="selectname">星级(复选)</h6>
+			<dl class="chooseStar clearfix">
+				<dt>不限</dt>
+				<dd>快捷连锁</dd>
+				<dd>二星级及以下/经济</dd>
+				<dd>三星级/舒适</dd>
+				<dd>四星级/高档</dd>
+				<dd>五星级/豪华</dd>
+			</dl>
+			<p class="confirmmodi" id="confirmStarPrice"><a href="javascript:;">确定</a></p>
+		</div>
+	</div>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/index/index.js?v=${jsVersion}"></script>
+</body>
+
+</html>

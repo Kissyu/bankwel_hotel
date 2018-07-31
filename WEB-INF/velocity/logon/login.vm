@@ -1,0 +1,31 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">登录</span>
+    </div>
+	<div class="fake"></div>
+	<div class="hotelQuery">
+		<div class="queryCondition regbox">
+			<div class="regItem clearfix">
+				<span class="regItemName">账户</span>
+				<input type="text" id="js-login-name" maxlength="18" placeholder="用户名/手机号" />
+			</div>
+			<div class="regItem clearfix">
+				<span class="regItemName">密码</span>
+				<input type="password" id="js-login-pass" placeholder="请输入密码"/>
+			</div>
+			<div class="regItem loginverifybox clearfix">
+				<span class="regItemName">验证码</span>
+				<input type="text" name="jcaptchaCode" id="jcaptchaCode" />
+				<span class="loginveriCode"><img src="$ctx/jcaptcha/logon" alt="验证码" id="jcaptchaPic"/></span>
+			</div>
+			<p class="forgetWord"><a href="javascript:;">忘记密码</a></p>
+			<p class="clearfix"><a href="javascript:;" class="searchNow" id="login">登录</a></p>
+			<p class="hasaccount">没有账号？<a href="$ctx/logon/register">注册</a></p>
+		</div>
+	</div>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/logon/login.js?v=${jsVersion}"></script>
+</body>
+
+</html>

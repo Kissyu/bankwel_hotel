@@ -1,0 +1,30 @@
+#parse("include/header.vm")
+	<input type="hidden" name="openid" id="openid" value="$openid" />
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">绑定手机</span>
+    </div>
+	<div class="fake"></div>
+	<div class="hotelQuery">
+		<div class="queryCondition regbox">
+			<div class="bindItem phoneItem clearfix" >
+				<input type="tel" id="phoneNum" maxlength="11" placeholder="请输入手机号"/>
+				<input type="hidden" id="bindPhoneToken" value="$!bindPhoneToken"/>
+			</div>
+			<div class="bindItem phoneItem getbox clearfix">
+				<input type="text" id="messageCode" placeholder="请输入短信验证码" />
+				<a href="javascript:;" class="getCode" id="getCode">获取短信验证码</a>
+				<span class="toGray"><var></var>秒后可重新发送</span>
+				<div class="verify-error">验证码输入错误</div>
+			</div>
+			<p class="clearfix"><a href="javascript:;" class="searchNow submitForPsw" id="bindNow">立即绑定</a></p>
+		</div>
+	</div>	
+	<!--vertify mobile mask start-->
+	#parse("include/verifyCode.vm")	
+	<!--vertify mobile mask end-->
+#parse("include/footer_js.vm")
+ <script src="$ctx/js/account/accountInfo/bindPhone/bindPhone.js?v=${jsVersion}"></script> 
+</body>
+
+</html>

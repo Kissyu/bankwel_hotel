@@ -1,0 +1,14 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">酒店详情</span>
+    </div>
+	<div class="fake"></div>
+	<div class="failedOrder">
+		<span class="failFace"></span>
+		该订单已失效，
+		<a href="javascript:;" class="resubmit">重新提交</a>
+	</div>
+</body>
+
+</html>

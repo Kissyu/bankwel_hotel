@@ -1,0 +1,26 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">常用住客</span>
+    </div>
+	<div class="fake"></div>
+	<ul class="accountInfoList">
+	<input type="hidden" name="openid" value="$openid">
+	<input type="hidden" id="addLodgerToken" value="$addLodgerToken">
+	#foreach($lodger in $lodgerList)
+		<li class="clearfix">
+			<span class="modiname">$!lodger.lodgerName</span>
+			<a href="$ctx/account/updateLodgerPage?openid=$openid&id=$!lodger.id" class="modiInfo fr" id="modiInfo">修改</a>
+			<a href="javascript:;" class="deletelodger fr">删除</a>
+			<input type="hidden" name="id" value="$!lodger.id">
+		</li>
+	#end
+	</ul>
+	<p class="addlodger clearfix">
+		<a href="$ctx/account/addLodgerPage?openid=$openid&addLodgerToken=$addLodgerToken" class="searchNow" id="submitForPsw"><i>+</i>新增住客信息</a>
+	</p>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/account/accountInfo/lodger/lodgerList.js?v=${jsVersion}"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!--通用js引入-->
+<script src="$ctx/js/lib/zepto.min.js?v=${jsVersion}"></script>
+<script src="$ctx/js/common/common.js?v=${jsVersion}"></script>
+<script src="$ctx/js/lib/sm.min.js?v=${jsVersion}"></script>
+
+<script type="text/javascript">
+var ctx = "$ctx";
+</script>
+
+#if($ScriptLocation&&$ScriptLocation==true)
+<script src="$ctx/js/common/getLocation.js?v=${jsVersion}"></script>
+#end
+
+#if($ScriptVerify&&$ScriptVerify==true)
+<script src="$ctx/js/common/inputValidate.js?v=${jsVersion}"></script>
+#end
+
+#if($ScriptSwiper&&$ScriptSwiper==true)
+<script src="$ctx/js/lib/swiper.jquery.min.js?v=${jsVersion}"></script>
+#end
+
+#if($ScriptSmCity&&$ScriptSmCity==true)
+<script src="$ctx/js/lib/sm-city-picker.min.js?v=${jsVersion}"></script>
+#end

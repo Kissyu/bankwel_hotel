@@ -1,0 +1,127 @@
+/*reset*/
+html{color:#000;background:#FFF;} 
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form, 
+fieldset,input,textarea,p,blockquote,th,td { 
+margin:0; 
+padding:0;
+line-height:100%;
+} 
+table { 
+border-collapse:collapse;
+border-spacing:0;
+table-layout:fixed;
+} 
+fieldset,img,input { 
+border:0; 
+}
+/*img拉伸*/
+img {
+width: 100%;
+height: 100%;
+}
+address,caption,cite,code,dfn,em,strong,th,var,i { 
+font-style:normal; 
+font-weight:normal; 
+} 
+ol,ul { 
+list-style:none; 
+} 
+caption,th { 
+text-align:left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+font-size:100%; 
+font-weight:normal; 
+} 
+q:before,q:after { 
+content:''; 
+} 
+abbr,acronym { 
+border:0; 
+} 
+a {
+color: inherit;
+text-decoration: none;
+}
+textarea {
+padding: 4px 10px 4px 10px;
+line-height: 20px;
+outline: none;
+resize: none;
+}
+/*clearfix*/
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+.clearfix {
+    zoom: 1;
+    /* IE < 8 */
+}
+input {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+input[type='button'] {
+	font-family: "Microsoft YaHei";
+    cursor: pointer;
+}
+/*去焦点框*/
+a:focus, input:focus {
+    outline: none;
+}
+a:hover {
+	text-decoration: none;
+}
+input::-moz-focus-inner {
+    border: 0
+}
+/* FireFox*/
+body, html {
+    width: 100%;
+    font-size: 22px;
+    background-color:#f2f2f2;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+/*单行文本、多余字数省略*/
+.nowrap-text {	
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*单个样式类*/
+.bold { font-weight: bold;}
+.handcursor { cursor: pointer;}
+.fl{float:left;}
+.fr{float:right;}
+.pr { position: relative;}
+.inlineblock { display: inline-block;}
+.hide { display: none;}
+.show { display: block !important;}
+.no-border { border: none !important;}
+.no-background { background-color: transparent !important;}
+/*媒体查询*/
+@media screen and (min-width:960px){
+	body, html {font-size:28px;}
+	.tryopen,.opened{font-size:30px;}
+}
+@media screen and (min-width:750px) and (max-width:960px){
+	body, html {font-size:26px;}
+	.tryopen,.opened{font-size:28px;}
+}
+@media screen and (min-width:400px) and (max-width:750px){
+	body, html {font-size:24px;}
+	.tryopen,.opened{font-size:26px;}
+}
+@media screen and (min-width:320px) and (max-width:400px){
+	body, html {font-size:22px;}
+	.tryopen,.opened{font-size:24px;}
+}
+@media screen and (max-width:320px){
+	body, html {font-size:20px;}
+	.tryopen,.opened{font-size:22px;}
+}

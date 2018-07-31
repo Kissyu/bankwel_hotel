@@ -1,0 +1,53 @@
+#parse("include/header.vm")
+	<input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="statebox keyWordInpBox clearfix"> 
+        <a href="javascript:history.back();" class="returnback fl"><i></i></a>
+		<p class="searchInpBox keyWordInp hasValueInp fl">
+			<span class="searchCityBtn"></span>
+			<input type="text" id="keywordSearchInp" placeholder="关键字/位置/商圈" />
+		</p>
+		<a href="javascript:;" class="confirmInp fr" id="cancleSearch">确定</a>
+    </div>
+	<div class="newfake"></div>
+	<div class="selectKeyWord">
+		<ul class="keyWordNav">
+			<li data-type="5">热门景点</li>
+			<li data-type="4">热门商圈</li>
+			<li data-type="1">机场车站</li>
+			<li data-type="2">地铁线路</li>
+			<li data-type="3">行政区</li>
+			<li data-type="4">商业区</li>
+			<li data-type="6">品牌酒店</li>
+		</ul>
+		<ul class="keyWordList" id="keyWordList"></ul>
+	</div>
+	<!-- 地铁站列表 -->
+	<ul class="metroLineList" id="metroLineList"></ul>
+	<!-- 酒店详细列表 -->
+	<div id="page-infinite-scroll-bottom" class="page page-current metroLineList">
+		<div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+        	<div class="list-block">
+            	<ul class="list-container">
+            	</ul>
+        	</div>
+          <!-- 加载提示符 -->
+          <div class="infinite-scroll-preloader">
+              <div class="preloader"></div>
+          </div>
+          <div class="nomoredata">没有更多数据了</div>
+      </div>
+     </div>
+	<!-- 搜索框联想结果 -->
+	<div class="searchResult keywordResult">
+	    <ul class="searchedCityList"></ul>
+	    <p class="cityEmpty">无联想结果</p>
+	</div>	
+#parse("include/footer_js.vm")
+<script src="$ctx/js/city/keyWordFilter.js?v=${jsVersion}"></script>
+<script>
+	$("body,html").css("background","#fff");
+</script>
+<!-- 代码部分end -->
+
+</body>
+</html>

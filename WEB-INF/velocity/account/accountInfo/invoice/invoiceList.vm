@@ -1,0 +1,26 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">发票信息</span>
+    </div>
+	<div class="fake"></div>
+	<input type="hidden" name="openid" id="openid" value="$openid">
+	<input type="hidden" name="addInvoiceToken" id="addInvoiceToken" value="$addInvoiceToken">
+	#foreach($invoice in $invoiceList)
+	<ul class="accountInfoList">
+		<li class="clearfix">
+			<span class="modiname">$!invoice.header</span>
+			<input type="hidden" name="invoiceId" id="invoiceId" value="$!invoice.id">
+			<a href="$ctx/account/updateInvoicePage?openid=$openid&invoiceId=$!invoice.id" class="modiInfo fr">修改</a>
+			<a href="javascript:;" class="deletelodger fr" id="deletelodger">删除</a>
+		</li>
+	</ul>
+	#end
+	<p class="addlodger clearfix">
+		<a href="$ctx/account/addInvoicePage?openid=$openid" class="searchNow" id="submitForPsw"><i>+</i>新增发票信息</a>
+	</p>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/account/accountInfo/invoice/invoiceList.js?v=${jsVersion}"></script>
+</body>
+
+</html>

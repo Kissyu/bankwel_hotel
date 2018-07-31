@@ -1,0 +1,27 @@
+#parse("include/header.vm")
+<input type="hidden" name="openid" value="$openid" />
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">我的订单</span>
+    </div>
+	<div class="fake"></div>
+	<div class="orderTypeNav">
+		<ul class="orderType clearfix">	
+			<li class="selectedType">进行中</li>
+			<li>历史订单</li>
+		</ul>
+	</div>
+	<div class="content orderlist" id="content">
+       	<div id="order_result">
+       	</div>
+		<!--加载提示符 -->
+         <div class="infinite-scroll-preloader">
+             <div class="preloader"></div>
+         </div>
+         <div class="nomoredata">没有更多数据了</div>
+     </div>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/account/myOrder/myOrderList.js?v=${jsVersion}"></script>
+</body>
+
+</html>

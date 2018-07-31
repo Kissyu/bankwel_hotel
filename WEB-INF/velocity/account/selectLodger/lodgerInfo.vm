@@ -1,0 +1,34 @@
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">住客信息</span>
+		<a href="javascript:;" class="completeFill fr" id="completeFill">保存</a>
+    </div>
+	<div class="fake"></div>
+	<div class="lodgerInfo">
+		<input type="hidden" name="openid" value="$openid" />
+		<input type="hidden" id="addLodgerToken" name="addLodgerToken" value="$addLodgerToken" />
+		<div class="bindItem lodgerItem clearfix">
+			<span class="regItemName">中文名</span>
+			<input type="text" name="lodgerName" value="" id="lodgerName" placeholder="必填" />
+		</div>
+		<div class="bindItem lodgerItem clearfix">
+			<span class="regItemName">英文姓</span>
+			<input type="text" name="lastName" value="" id="lastName" placeholder="选填" />
+		</div>
+		<div class="bindItem lodgerItem clearfix">
+			<span class="regItemName">英文名</span>
+
+			<input type="text" name="firstName" value="" id="firstName" placeholder="选填"/>
+		</div>
+		<div class="bindItem lodgerItem clearfix">
+
+			<span class="regItemName">身份证</span>
+			<input type="text" name="idCard" value="" id="idCard" placeholder="选填"/>
+		</div>
+	</div>
+#parse("include/footer_js.vm")
+<script src="$ctx/js/account/selectLodger/lodgerInfo.js?v=${jsVersion}"></script>
+</body>
+
+</html>

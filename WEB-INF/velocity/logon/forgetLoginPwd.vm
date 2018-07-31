@@ -1,0 +1,32 @@
+#set($ScriptVerify=true)
+#parse("include/header.vm")
+    <div class="statebox clearfix">
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">忘记密码</span>
+    </div>
+	<div class="fake"></div>
+	<div class="hotelQuery">
+		<div class="queryCondition regbox">
+			<div class="regItem clearfix">
+				<span class="regItemName">手机号码</span>
+				<input type="tel" maxlength="11" id="phone" placeholder="请输入手机号" />
+			</div>
+			<div class="regItem loginverifybox clearfix">
+				<span class="regItemName">验证码</span>
+				<input type="text" name="jcaptchaCode" id="jcaptchaCode" maxlength="6" />
+				<span class="loginveriCode"><img src="$ctx/jcaptcha/logon" alt="验证码" id="jcaptchaPic"/></span>
+			</div>
+			<div class="regItem getbox clearfix">
+				<span class="regItemName">短信验证码</span>
+				<input type="text" name="smsVerifycode" id="smsVerifycode"/>
+				<a href="javascript:;" class="getCode" id="getCode">获取短信验证码</a>
+				<span class="toGray"><var></var>秒后可重新发送</span>
+			</div>
+			<p class="clearfix"><a href="javascript:;" class="searchNow submitForPsw" id="submitForPsw">提交</a></p>
+		</div>
+	</div>
+#parse("include/footer_js.vm")
+	<script src="$ctx/js/logon/register.js?v=${jsVersion}"></script>
+</body>
+
+</html>
