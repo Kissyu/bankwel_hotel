@@ -1,0 +1,24 @@
+<input type="hidden" value="$!result.data.page.pageCount" class="pageCount" />
+<input type="hidden" value="$!result.data.page.total" class="totalhotel" />
+#foreach($!hotelItem in $!result.data.hotelList)
+    <div class="queryHotelItem clearfix">
+        <input type="hidden" class="hotelId" value="$!hotelItem.hotel_id">
+        <p class="queryHouseImg fl">#if(!$!hotelItem.logo)<img src="/hotel/img/hotelimg.png" #else
+        <img src="$!hotelItem.logo" /> #end </p>
+        <div class="queryHouseIntro fl">
+            <h6 class="nowrap-text">$!hotelItem.name</h6>
+            <p class="queryHouseLevel nowrap-text clearfix">
+                <span>$!hotelItem.tags_show</span>
+                #*<span class="queryHouseLived">住过</span>*#
+            </p>
+            <div class="clearfix">
+                <p class="queryHouseLocation nowrap-text fl">
+                    <i class="reserveIcon queryHouseLoIcon"></i>
+                    <span class="queryHouseDistance">$!hotelItem.dis_show</span>
+                    <span>$!hotelItem.section_show</span>
+                </p>
+                <div class="queryHouseCost fr"><i>¥</i><span>$!hotelItem.price_show</span>起</div>
+            </div>
+        </div>
+    </div>
+#end

@@ -1,0 +1,18 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>乐行</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link href="$!ctx/hotel/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link type="text/css" href="$ctx/hotel/css/sm.min.css?v=${jsVersion}" rel="stylesheet" />
+	<link type="text/css" href="$ctx/hotel/css/common.css?v=${jsVersion}" rel="stylesheet" />
+    <link type="text/css" href="$ctx/hotel/css/global.css?v=${jsVersion}" rel="stylesheet" />
+    
+    #if($linkSwiper&&$linkSwiper==true)
+    <link type="text/css" href="$ctx/hotel/css/swiper.min.css?v=${jsVersion}" rel="stylesheet" />
+    #end
+</head>
+<body>

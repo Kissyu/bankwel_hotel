@@ -1,0 +1,81 @@
+<input type="hidden" value="$!result.data.page.page_id">
+#foreach($orderItem in $!result.data.hotelList)
+<div class="orders-list">
+    <ul class="orders-list-box">
+        #*预付未支付*#
+        #if($!orderItem.price_type == 'adv' && $!orderItem.status == 10)
+            <a href="/hotel/wx/v1/user/myOrderDetailPage?openid=$!openid&order_id=$orderItem.order_id">
+                <li class="order-list-per">
+                    <div class="order-tit">
+                        <span class="inlineblock order-status">$orderItem.status_show</span>
+                        <i class="order-num" data-orderId="$orderItem.order_id">订单号： $orderItem.order_no</i>
+                    </div>
+                    <div class="order-hotel clearfix">
+                        <div class="order-hotel-img fl">
+                            <img src="$orderItem.hotel_logo" alt="order-hotel-img">
+                        </div>
+                        <div class="order-hotel-detail fl">
+                            <h3>$orderItem.hotel_name</h3>
+                            <div class="hotel-description">
+                                <span class="inlineblock">$orderItem.subtitle</span>
+                            </div>
+                            <div class="order-hotel-cost">
+                                <em class="hotel-price inlineblock">$orderItem.pay_total_show #*￥<i class="inlineblock">560</i>*#</em>
+                                <div class="order-hotel-detail-more inlineblock">立即支付</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </a>
+            #elseif($!orderItem.status == 70)
+                <a href="/hotel/wx/v1/user/myOrderDetailPage?openid=$!openid&order_id=$orderItem.order_id">
+                    <li class="order-list-per">
+                        <div class="order-tit">
+                            <span class="inlineblock order-status">$orderItem.status_show</span>
+                            <i class="order-num" data-orderId="$orderItem.order_id">订单号： $orderItem.order_no</i>
+                        </div>
+                        <div class="order-hotel clearfix">
+                            <div class="order-hotel-img fl">
+                                <img src="$orderItem.hotel_logo" alt="order-hotel-img">
+                            </div>
+                            <div class="order-hotel-detail fl">
+                                <h3>$orderItem.hotel_name</h3>
+                                <div class="hotel-description">
+                                    <span class="inlineblock">$orderItem.subtitle</span>
+                                </div>
+                                <div class="order-hotel-cost">
+                                    <em class="hotel-price inlineblock">$orderItem.pay_total_show #*￥<i class="inlineblock">560</i>*#</em>
+                                    <div class="order-hotel-detail-more inlineblock">查看详情</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+            #else
+                <a href="/hotel/wx/v1/user/myOrderDetailPage?openid=$!openid&order_id=$orderItem.order_id">
+                    <li class="order-list-per">
+                        <div class="order-tit">
+                            <span class="inlineblock order-status">$orderItem.status_show</span>
+                            <i class="order-num" data-orderId="$orderItem.order_id">订单号： $orderItem.order_no</i>
+                        </div>
+                        <div class="order-hotel clearfix">
+                            <div class="order-hotel-img fl">
+                                <img src="$orderItem.hotel_logo" alt="order-hotel-img">
+                            </div>
+                            <div class="order-hotel-detail fl">
+                                <h3>$orderItem.hotel_name</h3>
+                                <div class="hotel-description">
+                                    <span class="inlineblock">$orderItem.subtitle</span>
+                                </div>
+                                <div class="order-hotel-cost">
+                                    <em class="hotel-price inlineblock">$orderItem.pay_total_show #*￥<i class="inlineblock">560</i>*#</em>
+                                    <div class="order-hotel-detail-more inlineblock">查看详情</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+        #end
+    </ul>
+</div>
+#end

@@ -1,66 +1,62 @@
 /*reset*/
-html{color:#000;background:#FFF;} 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form, 
-fieldset,input,textarea,p,blockquote,th,td { 
-margin:0; 
-padding:0;
-line-height:100%;
-} 
-table { 
-border-collapse:collapse;
-border-spacing:0;
-table-layout:fixed;
-} 
-fieldset,img,input { 
-border:0; 
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,
+fieldset,input,textarea,p,blockquote,th,td {
+	margin:0;
+	padding:0;
+	line-height:100%;
 }
-/*img拉伸*/
-img {
-width: 100%;
-height: 100%;
+body{ -webkit-tap-highlight-color:rgba(0,0,0,0); }
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	table-layout:fixed;
 }
-address,caption,cite,code,dfn,em,strong,th,var,i { 
-font-style:normal; 
-font-weight:normal; 
-} 
-ol,ul { 
-list-style:none; 
-} 
-caption,th { 
-text-align:left; 
-} 
-h1,h2,h3,h4,h5,h6 { 
-font-size:100%; 
-font-weight:normal; 
-} 
-q:before,q:after { 
-content:''; 
-} 
-abbr,acronym { 
-border:0; 
-} 
+fieldset,img,input {
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var,i {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym {
+	border:0;
+}
 a {
-color: inherit;
-text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 textarea {
-padding: 4px 10px 4px 10px;
-line-height: 20px;
-outline: none;
-resize: none;
+	padding: 4px 10px 4px 10px;
+	line-height: 20px;
+	outline: none;
+	resize: none;
 }
 /*clearfix*/
 .clearfix:before, .clearfix:after {
-    content: "";
-    display: table;
+	content: "";
+	display: table;
 }
 .clearfix:after {
-    clear: both;
-    overflow: hidden;
+	clear: both;
+	overflow: hidden;
 }
 .clearfix {
-    zoom: 1;
-    /* IE < 8 */
+	zoom: 1;
+	/* IE < 8 */
 }
 input {
 	padding-left: 10px;
@@ -68,30 +64,34 @@ input {
 }
 input[type='button'] {
 	font-family: "Microsoft YaHei";
-    cursor: pointer;
+	cursor: pointer;
 }
 /*去焦点框*/
 a:focus, input:focus {
-    outline: none;
+	outline: none;
 }
 a:hover {
 	text-decoration: none;
 }
 input::-moz-focus-inner {
-    border: 0
+	border: 0
+}
+input,textarea {
+	border: 0;
+	-webkit-appearance: none;
 }
 /* FireFox*/
 body, html {
-    width: 100%;
-    font-size: 22px;
-    background-color:#f2f2f2;
-    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+	width: 100%;
+	font-size: 22px;
+	background-color:#f2f2f2;
+	font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
 }
 /*单行文本、多余字数省略*/
-.nowrap-text {	
+.nowrap-text {
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /*单个样式类*/
 .bold { font-weight: bold;}
@@ -108,20 +108,34 @@ body, html {
 @media screen and (min-width:960px){
 	body, html {font-size:28px;}
 	.tryopen,.opened{font-size:30px;}
+	.hotelDetailInfo .photobox li{max-height:8rem;}
+	.hotelDetailInfo .photobox img{min-height:8rem;}
+	.housePictrues .swiper-wrapper li{max-height:23rem;}
+	.housePictrues .swiper-wrapper img{min-height:23rem;}
 }
 @media screen and (min-width:750px) and (max-width:960px){
 	body, html {font-size:26px;}
 	.tryopen,.opened{font-size:28px;}
+	.hotelDetailInfo .photobox li{max-height:6rem;}
+	.hotelDetailInfo .photobox img{min-height:6rem;}
+	.housePictrues .swiper-wrapper li{max-height:19rem;}
+	.housePictrues .swiper-wrapper img{min-height:19rem;}
 }
-@media screen and (min-width:400px) and (max-width:750px){
+@media screen and (min-width:550px) and (max-width:750px){
 	body, html {font-size:24px;}
 	.tryopen,.opened{font-size:26px;}
+	.hotelDetailInfo .photobox li{max-height:5rem;}
+	.hotelDetailInfo .photobox img{min-height:5rem;}
+	.housePictrues .swiper-wrapper li{max-height:16rem;}
+	.housePictrues .swiper-wrapper img{min-height:16rem;}
 }
-@media screen and (min-width:320px) and (max-width:400px){
+@media screen and (min-width:360px) and (max-width:550px){
 	body, html {font-size:22px;}
 	.tryopen,.opened{font-size:24px;}
+	.housePictrues .swiper-wrapper li{max-height:14rem;}
+	.housePictrues .swiper-wrapper img{min-height:14rem;}
 }
-@media screen and (max-width:320px){
+@media screen and (max-width:360px){
 	body, html {font-size:20px;}
 	.tryopen,.opened{font-size:22px;}
 }

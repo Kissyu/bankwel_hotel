@@ -1,0 +1,171 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .collect-box {
+            width: 100%;
+            background-color: #fff;
+        }
+        .first-box {
+            padding-top: 1.8rem;
+        }
+        .bgc-gray {
+            width: 100%;
+            height: 0.4rem;
+            background-color: #f2f2f2;
+        }
+        .collect-container {
+            width: 96%;
+            padding: 0.3rem 2% 0;
+        }
+        .collect-container a {
+            display: block;
+            width: 88%;
+            padding-bottom: 0.3rem;
+        }
+        .collect-hotel-img {
+            width: 29%;
+            height: 3.636rem;
+        }
+        .collect-hotel-img img {
+            width: 3.636rem;
+            height:3.636rem;
+            -webkit-border-radius: 0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius:0.2rem;
+        }
+        .collect-hotel {
+            width: 71%;
+        }
+        .collect-hotel h3 {
+            font-size: 0.75rem;
+            color:#434242;
+        }
+        .hotel-stars {
+            width: 100%;
+            height: 1.7rem;
+        }
+        .hotel-stars em {
+            line-height:1.7rem;
+            font-size: 0.6rem;
+            color:#959595;
+        }
+        .hotel-star i {
+            width: 0.6rem;
+            height: 0.6rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -1.88rem 0rem;
+            background-size: 862%;
+        }
+        .hotel-price {
+            height: 1.2rem;
+            line-height:1.2rem;
+            font-size: 0.6rem;
+            color: #ff7700;
+        }
+        .hotel-price i {
+            font-size: 0.9rem;
+        }
+        .delete-collect {
+            position: relative;
+            width: 12%;
+            height:3.636rem;
+        }
+        .delete-collect span {
+            position: absolute;
+            right: 0;
+            bottom:0.2rem;
+            width: 0.69rem;
+            height: 0.85rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -5rem -1.25rem;
+            background-size: 1461%;
+        }
+        .collect-order-content,.collect-li-box {
+            width: 100%;
+        }
+        .nomoredata {
+            text-align: center;
+            font-size: 0.625rem;
+            display: none;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">收藏</span>
+</div>
+<div class="first-box"></div>
+<div class="collect-li-box">
+    <div class="collect-order-content"></div>
+    <!--加载提示符 -->
+    <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+    </div>
+    <div class="nomoredata">没有收藏酒店的数据</div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/account/collect/collectIndex.js?v=${jsVersion}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- 修改入离店的弹出层 --- start-->
+<div class="popup modipopup">
+    <div class="content-block popupbox">
+        <div class="startbox clearfix">
+            <div class="livein fl">
+                <input type="text" id="liveinday" readonly />
+                <span class="liveintip">(周<i id="qqq"></i>)入住<em></em></span>
+            </div>
+            <div class="modistart fr">
+                <span class="prevday">前一天</span>
+                <span class="nextday">后一天</span>
+            </div>
+        </div>
+        <div class="startbox endbox clearfix">
+            <div class="livein leaveoff fl">
+                <span class="totallive fl">住<em></em>晚</span>
+                <span class="leavedate fr"><em></em>(周<i></i>)离店</span>
+            </div>
+            <div class="modistart modidays fr">
+                <span class="subdays fl">-</span>
+                <span class="adddays fl">+</span>
+            </div>
+        </div>
+        <p class="confirmmodi"><a href="javascript:;">确定</a></p>
+    </div>
+</div>
+<!-- 修改入离店的弹出层 --- end-->
+<script src="$ctx/hotel/js/common/modiCheckInOut.js"></script>

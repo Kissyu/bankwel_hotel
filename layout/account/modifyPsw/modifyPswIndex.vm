@@ -1,0 +1,220 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .fake {
+            width:100%;
+            height: 1.8rem;
+        }
+        .hotelQuery{
+            width:96%;
+            margin:0.5rem 2.04% 0;
+            background:#fff;
+            border-radius:3px;
+        }
+        .queryCondition {
+            width:94.6%;
+            padding:0 2.7% 0.875rem 2.7%;
+        }
+        .regbox{
+            padding-top:0.25rem;
+            padding-bottom:1.1875rem;
+        }
+        .bindItem{
+            width:100%;
+            height:2.1875rem;
+            line-height:2.1875rem;
+            font-size:0.75rem;
+            color:#444445;
+            border-bottom:1px solid #d6d6d6;
+        }
+        .bindItem input{
+            float:left;
+            width:62%;
+            height:2.1875rem;
+            padding:0;
+            font-size:0.75rem;
+        }
+        .pswItem .bindItemName{
+            color:#79797a;
+            width:28%;
+        }
+        .pswItem input{
+            width:72%;
+        }
+        .passItem {
+            position:relative;
+        }
+        .bindItemName{
+            width:38%;
+            float:left;
+        }
+        .input-writetip {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.75rem;
+            z-index: 222;
+            height:100%;
+            color: #999;
+        }
+        .name-tipbox{
+            position:relative;
+            width:72%;
+            height:100%;
+        }
+        .name-tipbox input,.pswItem .name-tipbox input{
+            width:100%;
+        }
+        .name-tipbox input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 111;
+        }
+        .name-tipbox .input-writetip{
+            padding-top:0.4rem;
+            font-size:0.625rem;
+            line-height:0.8rem;
+            width:100%;
+            height:1.8rem;
+            right:0;
+            bottom:0;
+        }
+        .pass-str {
+            display:none;
+            width:100%;
+            position:absolute;
+            left:0;
+            bottom:-0.4rem;
+            height:0.4rem;
+            font-size:0.4rem;
+        }
+        .pass-str span{
+            width:33.33%;
+            height:100%;
+            float:left;
+            text-align:center;
+        }
+        .pass-str .power{
+            background:#0c3
+        }
+        .pass-str .middle{
+            background:#fc0
+        }
+        .pass-str .weak{
+            background:#f30;
+        }
+        .submit-new-psw {
+            width: 100%;
+        }
+        .submitForPsw{
+            display: block;
+            width: 60%;
+            margin:1.3rem auto 0;
+            border-radius:1.6rem;
+            height:2rem;
+            background:#ff8921;
+            color:#fff;
+            font-size:0.6875rem;
+            text-align:center;
+            line-height:2rem;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">修改密码</span>
+</div>
+<div class="fake"></div>
+<div class="hotelQuery">
+    <div class="queryCondition regbox">
+        <div class="bindItem pswItem clearfix">
+            <span class="bindItemName">原始密码</span>
+            <input type="password" id="inpOldPsw" maxlength="16" placeholder="请输入旧密码" />
+        </div>
+        <div class="bindItem pswItem passItem clearfix">
+            <span class="bindItemName">新密码</span>
+            <div class="name-tipbox fl">
+                <input type="password" class="newPsw" id="inpNewPsw" maxlength="16" />
+                <div class="input-writetip">密码长度为4-16字符，建议使用字母数字和符号组合</div>
+            </div>
+            <div class="pass-str clearfix">
+                <span>弱</span>
+                <span>中</span>
+                <span>强</span>
+            </div>
+        </div>
+        <div class="bindItem pswItem clearfix">
+            <span class="bindItemName">确认新密码</span>
+            <input type="password" id="inpNewPswAgain" maxlength="16" placeholder="请再次输入新密码" />
+        </div>
+        <p class="clearfix submit-new-psw">
+            <a href="javascript:;" class="submitForPsw" id="submitForPsw">提交</a>
+        </p>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/account/accountInfo/modifyPsw/modiPsw.js?v=${jsVersion}"></script>
+</body>
+</html>

@@ -1,3 +1,0 @@
-#macro(d $name)
-	$name
-#end

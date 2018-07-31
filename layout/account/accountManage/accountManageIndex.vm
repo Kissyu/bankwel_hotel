@@ -1,0 +1,318 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .create-account {
+            padding-top: 1.8rem;
+            width: 96%;
+            margin: 0 auto 0.2rem;
+            height: 3.024rem;
+        }
+        .create-subAccount {
+            height: 2.424rem;
+            width: 100%;
+            background-color: #fff;
+            margin: 0 auto;
+            -webkit-border-radius:0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius: 0.2rem;
+        }
+        .bgc-gray {
+            width: 100%;
+            height: 0.4rem;
+            background-color: #f2f2f2;
+        }
+        .create-subAccount a {
+            display: block;
+            width: 100%;
+            height: 2.424rem;
+        }
+        .create-account-container {
+            position: relative;
+            width: 50%;
+            height: 2.424rem;
+            margin: 0 auto;
+        }
+        .create-account-container i{
+            position: absolute;
+            top: 0;
+            left: 20%;
+            margin-top: 0.798rem;
+            width: 0.828rem;
+            height: 0.828rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -1.7rem -1.334rem;
+            background-size: /*1242%*/10.28376rem;
+        }
+        .create-account-container span {
+            position: absolute;
+            top: 0.05rem;
+            left: 36%;
+            font-size: 0.75rem;
+            margin-top: 0.798rem;
+            height: 0.828rem;
+            line-height: 0.828rem;
+            color: #ff8921;
+        }
+        .sub-account-overview {
+            width: 96%;
+            margin: 0 auto 0.4rem;
+            -webkit-border-radius:0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius: 0.2rem;
+            background-color: #fff;
+        }
+        .account-tit {
+            position: relative;
+            width: 96%;
+            padding: 0 2%;
+            height: 2.303rem;
+            line-height: 2.303rem;
+        }
+        .account-tit span {
+            font-size: 0.9rem;
+            color:#434242;
+        }
+        .account-tit i {
+            position: absolute;
+            top: 0.65rem;
+            left: 35%;
+            width:0.97rem;
+            height: 0.97rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat 0rem 0rem;
+            background-size:/* 880%*/8.536rem;
+        }
+        .account-tit .bg-toggole {
+            position: absolute;
+            top: 0.65rem;
+            left: 35%;
+            width:0.97rem;
+            height: 0.97rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -1rem 0rem;
+            background-size: /*880%*/8.536rem;
+        }
+        .account-detail {
+            width: 96%;
+            padding: 0 2% 0.5rem;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .account-detail p {
+            width: 100%;
+            margin: 0;
+            height: 1.56rem;
+            line-height: 1.56rem;
+            font-size: 0.8rem;
+            color: #959595;
+        }
+        .account-status-change {
+            position: relative;
+            width: 96%;
+            padding: 0 2%;
+            height: 2.525rem;
+            border-top: 1px solid #d6d6d6;
+
+        }
+        .account-status-change a {
+            margin-left: 75%;
+            margin-top: 0.517rem;
+            display: inline-block;
+            width: 1.4rem;
+            height: 1.491rem;
+        }
+        .alter-ico {
+            position: absolute;
+            left: 75%;
+            top: 0.717rem;
+            width: 1.091rem;
+            height: 1.091rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -9.42rem -2.3rem;
+            background-size: /*990%*/10.8009rem;
+        }
+        .delete-ico {
+            position: absolute;
+            width: 0.889rem;
+            height: 1.091rem;
+            left: 90%;
+            top: 0.717rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -4.4rem -1.65rem;
+            background-size: /*1461%*/12.98829rem;
+        }
+        .nomoredata{
+            text-align:center;
+            font-size:0.625rem;
+            display:none;
+            height:2.2rem;
+            line-height:2.2rem;
+            color:#999;
+        }
+        .account-li-box {
+            width: 100%;
+        }
+        .click-box {
+            width: 100%;
+        }
+        .click-load-more {
+            width: 100%;
+            height: 2.0rem;
+            line-height:2.0rem;
+            color: #ccc;
+            font-size: 0.6rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="$ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="lastStep"><i></i></a>
+    <span class="thetittle">账户管理</span>
+</div>
+<div class="create-account">
+    <div class="bgc-gray"></div>
+    <div class="create-subAccount"><a href="$ctx/hotel/wx/v1/company/addUserPage?openid=$!openid">
+        <div class="create-account-container">
+            <i class="inlineblock"></i>
+            <span class="inlineblock">创建子账户</span>
+        </div>
+    </a></div>
+</div>
+<div class="account-li-box" id="content">
+</div>
+<!--加载提示符 -->
+<div class="infinite-scroll-preloader">
+    <div class="preloader"></div>
+</div>
+<div class="click-box">
+    <div class="click-load-more hide">点击加载更多</div>
+</div>
+<div class="nomoredata">没有更多数据了</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script>
+    var openid=$("input[name='openid']").val();
+    var page_id = 1;
+    var loading = false;
+    var nomore=false;
+    function addItems(pageNum) {
+        $.ajax({
+            data:{
+                openid: openid,
+                page_id : page_id
+            },
+            url:ctx+'/hotel/api/v1/company/queryAllUserByPage',
+            type:"GET",
+            dataType: "json",
+            success:function(result){
+                var html = '';
+                var orderLis = result.data.userList;
+                for(var i = 0; i <orderLis .length; i++){
+                    var deleteIco ='';
+                    if(orderLis[i]["user_type"]=='admin'){
+                        deleteIco = '';
+                    }else{
+                        deleteIco ='<a href="javascript:;"><i class="delete-ico"></i></a>'
+
+                    }
+                    html += '<div class="sub-account-overview"> <div class="account-tit" data-userType="'+ orderLis[i]["user_type"] +'"> <span class="inlineblock">'
+                            +orderLis[i]["true_name"]+
+                            '</span> <i class="inlineblock"></i> </div> <div class="account-detail hide"> <p class="mobile">电话：<em class="inlineblock">'
+                            +orderLis[i]["mobilephone"]+
+                            '</em></p> <p class="emial">邮箱：<em class="inlineblock">'
+                            +orderLis[i]["email"]+
+                            '</em></p> <p class="jobNum">工号：<em class="inlineblock">'
+                            +orderLis[i]["employee_code"]+
+                            '</em></p> <p class="department">部门：<em class="inlineblock">'
+                            +orderLis[i]["department"]+
+                            '</em></p> </div> <div class="account-status-change"> <a href='+ctx+'"/hotel/wx/v1/company/userDetailPage?openid='+openid+'&user_id='+orderLis[i]["user_id"]+'">'
+                            + '<i class="alter-ico"></i> </a> '+deleteIco+'</div>'
+                            +'<input type="hidden" class="userId" value="'+orderLis[i]["user_id"]+'"></div>';
+                }
+                $('.account-li-box').append(html);
+                $('.sub-account-overview').each(function(index,ele){
+                    if($(this).find('.account-tit').attr('data-userType')=='admin') {
+                        $(this).find('.account-status-change').find('.alter-ico').css('left','88%');
+                    }
+                });
+                if(orderLis.length<10){
+                    nomore=true;
+                    // 删除加载提示符
+                    $('.infinite-scroll-preloader').hide();
+                    $(".nomoredata").show();
+                    return;
+                }else {
+                    $('.infinite-scroll-preloader').hide();
+                    $(".nomoredata").hide();
+                    $('.click-load-more').removeClass('hide');
+                }
+            }
+        });
+    }
+    addItems(page_id);
+    page_id = 2;
+    $('.click-load-more').on('click',function() {
+        $('.infinite-scroll-preloader').show();
+        $(this).addClass('hide');
+        addItems(page_id);
+        page_id++;
+    });
+</script>
+<script src="$ctx/hotel/js/account/accountManage/index.js?v=${jsVersion}"></script>
+</body>
+</html>

@@ -201,3 +201,47 @@ function getStrength(str) {
 	}
 	return ind;
 }
+
+// cookie
+
+function setCookie(jsondate, iDay) {
+	//var josndate={name1:value1,name2:value2}
+	var now = new Date();
+	now.setTime(now.getTime() + iDay * 24 * 60 * 60 * 1000);
+	var arr = [];
+
+	for (var i in jsondate) {
+		arr.push(i + "=" + jsondate[i]);
+	}
+	//arr=[name1=value1,name2=value2]
+	for (var i = 0; i < arr.length; i++) {
+		document.cookie = arr[i] + ";expires=" + now.toGMTString();
+	}
+}
+
+function getCookie(name) {
+	//获取cookie:document.cookie:user=tangcai ;age=18 ;字符串方法split将str用指定的分隔符劈开后将两边str推进数组中；
+	var arr = document.cookie.split("; ");
+	//user=tancai,age=18=====arr;
+	for (var i = 0; i < arr.length; i++) {
+		var arr2 = arr[i].split('=');
+		//arr2=[user,tangci] arr2=[age,18]
+		if (arr2[0] == name) {
+			return arr2[1];
+		}
+	}
+	return false;
+}
+
+function removeCookie(name) {
+	var oldDate = new Date();
+	oldDate.setTime(oldDate.getTime() - 1 * 24 * 60 * 60 * 1000);
+	document.cookie = name + "=;expires=" + oldDate.toGMTString();
+}
+
+/*获取地址栏中的参数*/
+function getUrlParam(name) {
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r!=null) return unescape(r[2]); return null; //返回参数值
+}

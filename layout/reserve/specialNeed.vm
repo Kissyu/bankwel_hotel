@@ -1,0 +1,21 @@
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="statebox clearfix">
+        <a href="javascript:history.back();" class="lastStep"><i></i></a>
+        <span class="thetittle">特别要求 </span>
+        <a href="javascript:;" class="completeFill fr" id="completeFill">完成</a>
+    </div>
+    <div class="fake"></div>
+    <ul class="specialneedList">
+        <li>无需求</li>
+        <li>尽量大床</li>
+        <li>尽量双床</li>
+        <li class="myNeed">其他</li>
+    </ul>
+    <div class="otherNeed">
+        <textarea id="otherNeed" placeholder="如有其他要求请填写，酒店会尽量为您安排"></textarea>
+    </div>
+    #parse("/hotel/layout/include/footer_js.vm")
+    <script src="$ctx/hotel/js/reserve/specialNeed.js"></script>
+</body>
+</html>

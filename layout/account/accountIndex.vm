@@ -1,0 +1,421 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:200;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        .personalCenter{
+            position:relative;
+            z-index:5;
+            padding-right:3.54%;
+            font-size:0.625rem;
+            color: #fff;
+            line-height: 1.8rem;
+        }
+        .searchIco {
+            margin:0.45rem 0.2rem 0 0;
+            width:0.9rem;
+            height:0.9rem;
+            background:url($ctx/hotel/img/searchHotelIco.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .account-top {
+            width: 94%;
+            padding: 1.8rem 3% 0 3%;
+            height: 4.636rem;
+            background-color: #fff;
+        }
+        .admin-avatar {
+            padding-top:0.803rem;
+            width: 24%;
+            position: relative;
+        }
+        .admin-avatar .uploadImg {
+            position: absolute;
+            left: 0;
+            top:0.803rem;
+            z-index: 9999;
+            width: 3.03rem;
+            height:3.03rem;
+            opacity: 0;
+        }
+        .admin-avatar .logoImg {
+            position: absolute;
+            left: 0;
+            top:0.803rem;
+            display: block;
+            z-index: 111;
+            width: 3.03rem;
+            height:3.03rem;
+            background: url($!result.data.company_logo) no-repeat;
+            background-size:cover;
+            border-radius: 50%;
+        }
+        .company-info {
+            width: 76%;
+            padding-top:1.3rem;
+        }
+        .company-info .company-name {
+            width: 100%;
+            font-size: 0.727rem;
+            color: #434242;
+        }
+        .company-name-info {
+            color: #434242;
+            position:relative;
+            width: 100%;
+            display: block;
+        }
+        .company-name-info i {
+            position: absolute;
+            right: 0;
+            top: -0.1rem;
+            width: 0.404rem;
+            height: 0.727rem;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat -4.1rem -0.8rem ;
+            background-size: /*1821%*/7.35684rem;
+        }
+        .system-role {
+            padding-top: 0.646rem;
+            color: #f88f33;
+            font-size: 0.61rem;
+        }
+        .all-orders {
+            width: 100%;
+            height: 6.02rem;
+            margin: 0.6rem auto;
+            background-color: #fff;
+        }
+        .orders-tit {
+            position: relative;
+            padding: 0 3%;
+            height:2.06rem;
+            width: 94%;
+        }
+        .line {
+            width: 100%;
+            height: 0.045rem;
+            background-color: #e2e2e2;
+        }
+        .orders-tit i {
+            width: 1.13rem;
+            height: 1.25rem;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat 0 -2.2rem;
+            background-size: /*897%*/10.3155rem;
+            margin-top: 0.405rem;
+        }
+        .orders-tit span {
+            position: absolute;
+            font-size: 0.747rem;
+            color: #434242;
+            top: 0.55rem;
+            left: 12%;
+        }
+        .orders-tit em {
+            position: absolute;
+            right: 3%;
+            width: 0.404rem;
+            height: 0.727rem;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat -4.1rem -0.8rem ;
+            background-size: /*1821%*/7.35684rem;
+            top: 0.75rem;
+        }
+        .order-list {
+            padding: 1rem 0 0 0.95rem;
+        }
+        .order-list-box li {
+            width: 20%;
+            padding: 0 1.5%;
+            position: relative;
+        }
+        .order-list-box li a {
+            display: block;
+            width: 100%;
+        }
+        .order-list-box li span,.order-list-box li em {
+            display: block;
+        }
+        .order-list-box li span {
+            position: relative;
+            top:0;
+            height: 1.05rem;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat;
+        }
+        .order-list-box .order-1 {
+            width: 0.747rem;
+            left: 38%;
+            background-position: -5.78rem 0rem;
+            background-size: /*1304%*/9.74088rem;
+        }
+        .order-list-box .order-2 {
+            width: 1.15rem;
+            left: 32%;
+            background-position: -7.3rem 0rem;
+            background-size: /*940%*/10.81rem;
+        }
+        .order-list-box .order-3 {
+            width: 1.07rem;
+            left: 33%;
+            background-position: -8.6rem 0rem;
+            background-size: /*1024%*/10.9568rem;
+        }
+        .order-list-box .order-4 {
+            width: 1.03rem;
+            left: 34%;
+            background-position: -9.7rem 0rem;
+            background-size: /*1054%*/10.8562rem;
+        }
+        .order-list-box li em {
+            width: 100%;
+            text-align: center;
+            margin-top:0.25rem;
+            font-size: 0.606rem;
+            color:#515151;
+        }
+        .account-admin {
+            width: 100%;
+        }
+        .account-admin-box {
+            width: 100%;
+        }
+        .account-admin-box li {
+            width: 94%;
+            height: 1.212rem;
+            padding: 0.606rem 3%;
+            background-color: #fff;
+            margin-bottom: 0.405rem;
+        }
+        .account-admin-box a {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-size: 0.75rem;
+            color:#4f4f4f;
+        }
+        .account-admin-box a i {
+            height: 1.212rem;
+            position: relative;
+            top:0;
+            left: 0;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat;
+        }
+        .account-admin-box .account-1 {
+            width: 1.293rem;
+            background-position: -1.227rem -2.28rem;
+            background-size: /*816%*/10.55088rem;
+        }
+        .account-admin-box .account-2 {
+            width: 1.212rem;
+            background-position: -2.5rem -3em;
+            background-size: /*866%*/10.49592rem;
+        }
+        .account-admin-box .account-3 {
+            width: 1.2727rem;
+            background-position: -5.11rem -2.21rem;
+            background-size: /*816%*/10.385232rem;
+        }
+        .account-admin-box .account-4 {
+            width: 1.293rem;
+            background-position: -6.5rem -2.28rem;
+            background-size: /*816%*/10.55088rem;
+        }
+        .account-admin-box .account-5 {
+            background: url("$ctx/hotel/img/feedback-ico.png") 0 0 no-repeat;
+            width: 1.293rem;
+            height: 1.4rem;
+           /* background-position: -7.7rem -1.8rem;*/
+           /* background-size: 709%;*/
+            background-size: cover;
+        }
+        .account-admin-box span {
+            position: absolute;
+            top: 0.12rem;
+            left: 2rem;
+            width: 40%;
+        }
+        .account-admin-box em {
+            position: absolute;
+            right: 3%;
+            top: 0.1rem;
+            width: 0.404rem;
+            height: 0.727rem;
+            background: url($ctx/hotel/img/account-ico.png) no-repeat -4.2rem -0.8rem ;
+            background-size: /*1821%*/7.35684rem;
+        }
+        .exit-login {
+            display: block;
+            padding-bottom:0.405rem;
+            height: 1.8rem;
+            width: 100%;
+        }
+        .exit-btn {
+            width: 80%;
+            height: 1.8rem;
+            margin: 0 auto;
+            background-color: #f88b39;
+            -webkit-border-radius:1rem;
+            -moz-border-radius:1rem;
+            border-radius:1rem;
+            line-height: 1.8rem;
+            text-align: center;
+            color:#fff;
+            font-size: 0.8rem;
+        }
+        .btn-toggle {
+            background-color: #ffb52c;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<input type="hidden" id="role" value="$!result.data.user_type">
+    <div class="statebox clearfix">
+       #* <a href="/hotel/wx/v1/hotel/queryHotelMain?openid=$!openid" class="lastStep"><i></i></a>*#
+        <span class="thetittle">个人中心</span>
+           <a href="$ctx/hotel/wx/v1/hotel/queryHotelMain?openid=$!openid" class="personalCenter fr"><i class="searchIco"></i>酒店查询</a>
+    </div>
+
+    <div class="account-top clearfix">
+        <a href="javascript:;">
+            <div class="admin-avatar fl">
+                #if($!result.data.user_type=='admin')
+                    #*<input type="file" id="uploadImg" class="uploadImg">*#
+                    <em class="logoImg"></em>
+                    #*<img src="$!result.data.company_logo" alt="admin-avatar" class="logoImg">*#
+                #else
+                    <em class="logoImg"></em>
+                    #*<img src="$!result.data.company_logo" alt="admin-avatar" class="logoImg">*#
+                #end
+            </div>
+        </a>
+        #*<a #if($!result.data.user_type=='admin') href="javascript:;*##*/hotel/wx/v1/company/uploadComLogoPage?openid=$!openid*##*"
+            #elseif($!result.data.user_type=='normal') href="javascript:;" #end>
+            <div class="admin-avatar fl">
+                <input type="file" id="uploadImg" class="uploadImg">
+                <img src="$!result.data.company_logo" alt="admin-avatar">
+            </div>
+        </a>*#
+        <div class="company-info fl">
+            <div class="company-name">
+                <a class="company-name-info" href="javascript:;">
+                    <span class="inlineblock">$!result.data.company_name</span>
+                    #*<i class="inlineblock"></i>*#
+                </a>
+            </div>
+            <div class="system-role">$!result.data.true_name</div>
+        </div>
+    </div>
+    <div class="all-orders">
+        <a href="/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=&sorttype=">
+            <div class="orders-tit">
+                <i class="inlineblock"></i>
+                <span class="inlineblock">所有订单</span>
+                <em class="inlineblock"></em>
+            </div>
+        </a>
+        <div class="line"></div>
+        <div class="order-list">
+            <ul class="order-list-box clearfix">
+                <li class="fl"><a href="$ctx/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=1&sorttype="><span class="order-1"></span><em>待处理</em></a></li>
+                <li class="fl"><a href="$ctx/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=2&sorttype="><span class="order-2"></span><em>待入住</em></a></li>
+                <li class="fl"><a href="$ctx/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=3&sorttype="><span class="order-3"></span><em>已入住</em></a></li>
+                <li class="fl"><a href="$ctx/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=4&sorttype="><span class="order-4"></span><em>已失效</em></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="account-admin">
+        <ul class="account-admin-box">
+            <li #if($!result.data.user_type=='normal') class="hide"
+            #end>
+                <a href="$ctx/hotel/wx/v1/company/queryAllUser?openid=$!openid">
+                    <i class="inlineblock account-1"></i><span class="inlineblock">账户管理</span><em class="inlineblock"></em>
+                </a>
+            </li>
+            <li>
+                <a href="$ctx/hotel/wx/v1/user/modifyPasswordPage?openid=$!openid">
+                    <i class="inlineblock account-2"></i><span class="inlineblock">修改密码</span><em class="inlineblock"></em>
+                </a>
+            </li>
+            <li>
+                <a href="$ctx/hotel/wx/v1/user/queryAllFavPage?openid=$!openid">
+                    <i class="inlineblock account-3"></i><span class="inlineblock">收藏</span><em class="inlineblock"></em>
+                </a>
+            </li>
+            <li #if($!result.data.user_type=='normal') class="hide"
+            #end>
+                <a href="$ctx/hotel/wx/v1/company/queryAllInvoice?openid=$!openid">
+                    <i class="inlineblock account-4"></i><span class="inlineblock">发票信息</span><em class="inlineblock"></em>
+                </a>
+            </li>
+            <li>
+                <a href="$ctx/hotel/wx/v1/user/feedbackPage?openid=$!openid">
+                    <i class="inlineblock account-5"></i><span class="inlineblock">一键反馈</span><em class="inlineblock"></em>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a href="$ctx/hotel/wx/v1/user/logout?openid=$!openid" class="exit-login"><div class="exit-btn">退出</div></a>
+</body>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/account/index.js?v=${jsVersion}"></script>
+#*<script src="/hotel/js/account/imgUpload/imgUpload.js"></script>*#
+</html>

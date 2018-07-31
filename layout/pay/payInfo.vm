@@ -1,0 +1,70 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<form id="payInfo">
+    <input type="hidden" name="appId" value="$result.data.payInfo.appId"/>
+    <input type="hidden" name="timeStamp" value="$result.data.payInfo.timeStamp"/>
+    <input type="hidden" name="nonceStr" value="$result.data.payInfo.nonceStr"/>
+    <input type="hidden" name="package" value="$result.data.payInfo.package"/>
+    <input type="hidden" name="signType" value="$result.data.payInfo.signType"/>
+    <input type="hidden" name="paySign" value="$result.data.payInfo.paySign" />
+</form>
+</body>
+<script type="text/javascript">
+    var ctx = "$ctx";
+</script>
+<script src="$ctx/hotel/js/lib/zepto.min.js?v=${jsVersion}"></script>
+<script>
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    var jsonuserinfo = $('#payInfo').serializeObject();
+
+    function onBridgeReady(){
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',jsonuserinfo,
+                function(res){
+                    var openid=$("#open_id").val();
+                    window.location.href=ctx+'/hotel/wx/v1/user/myOrderDetailPage?openid='+openid+'&order_id='+sessionStorage.getItem("orderId");
+                    /*if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        WeixinJSBridge.invoke('closeWindow');
+                    }*/     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                }
+        );
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    }else{
+        onBridgeReady();
+    }
+
+
+</script>
+</html>

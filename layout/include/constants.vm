@@ -1,0 +1,1 @@
+#set($ctx = $link.contextPath)

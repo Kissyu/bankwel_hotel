@@ -1,0 +1,68 @@
+#set($ScriptLocation=true)
+#set($ScriptVerify=true)
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="statebox clearfix">
+        #*<a href="javascript:history.back();" class="lastStep"><i></i></a>*#
+        <span class="thetittle">酒店查询</span>
+        <a href="$ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+    </div>
+    <div class="fake"></div>
+    <div class="hotelQuery">
+        <div class="queryCondition">
+            <div class="clearfix">
+                <div class="destSetion fl">
+                    <p class="fillDesc">目的地</p>
+                    <div class="selectDest" id="mylocation">
+                        <span class="destination" id="locationAdd"></span>
+                        <em></em>
+                    </div>
+                </div>
+                <div class="myLocation fr" id="locate">
+                    <em class="reserveIcon"></em>
+                    <span>我的位置</span>
+                </div>
+            </div>
+            <div class="staytime clearfix">
+                <div class="checkintime fl">
+                    <p class="fillDesc">入住</p>
+                    <div class="selectDest">
+                        <input type="text" id="checkintime" />
+                        <em></em>
+                    </div>
+                </div>
+                <span class="livedate">共1晚</span>
+                <div class="leavetime fr">
+                    <p class="fillDesc">离店</p>
+                    <div class="selectDest">
+                        <input type="text" id="leavetime" />
+                        <em></em>
+                    </div>
+                </div>
+            </div>
+            <div class="jsKeyword clearfix">
+                <div class="bedtype areabox fl" id="area">
+                    <span class="keywordArea deleteItem" id="areaInp"></span>
+                    <span class="input-writetip">关键字/位置/品牌/酒店名</span>
+                    <em class="gotoselect"></em>
+                </div>
+                <a href="javascript:;" class="cancelSelect" id="areaDelete"><i>×</i></a>
+            </div>
+            <div class="jsKeyword clearfix">
+                <div class="bedtype areabox open-popup fl" data-popup=".priceStarpopup">
+                    <span class="pricetarInp deleteItem" id="pricetarInp"></span>
+                    <span class="input-writetip">价格/星级</span>
+                    <em class="gotoselect"></em>
+                </div>
+                <a href="javascript:;" class="cancelSelect" id="priceDelete"><i>×</i></a>
+            </div>
+            <p class="redtip"><i>*</i>注：床型酒店尽量满足，但不能保证</p>
+            <p class="clearfix"><a href="javascript:;" class="searchNow" id="searchNow">开始搜索</a></p>
+        </div>
+    </div>
+    #parse("/hotel/layout/include/footer_js.vm")
+    #parse("/hotel/layout/include/priceStar.vm")
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xFMyMjdwoHI7zHLENAetXtDaqC056jjB"></script>
+    <script src="$ctx/hotel/js/query/queryIndex.js?v=${jsVersion}"></script>
+</body>
+</html>

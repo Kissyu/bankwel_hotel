@@ -1,0 +1,153 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .comment-box {
+            width: 100%;
+            padding-top: 1.8rem;
+            height: 100%;
+            background-color: #9b9b9b;
+        }
+        .comment-container {
+            width: 76%;
+            padding: 0 10%;
+            height: 40%;
+            margin: 20% auto;
+            background-color: #fff;
+            -webkit-border-radius:0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius:0.2rem;
+        }
+        .comment-container p {
+            line-height: 4.05rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.6rem;
+            color:#434242;
+        }
+        .comment-star {
+            width: 100%;
+            height: 2.2rem;
+        }
+        .comment-detail {
+            width: 22%;
+            margin: 0 auto;
+        }
+        .comment-detail i {
+            display: block;
+            width: 1.2rem;
+            height: 1.2rem;
+            margin: 0 auto;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -3.47rem 0rem;
+            background-size: 815%;
+        }
+        .comment-txt {
+            width: 100%;
+        }
+        .comment-txt div {
+            width: 24%;
+            margin: 0 auto;
+            line-height: 1.1rem;
+            font-size: 0.75rem;
+            color: #434242;
+            text-align: center;
+        }
+        .comment-submit {
+            width: 40%;
+            margin:1rem auto 0;
+            height: 1.4rem;
+            line-height:1.4rem;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #fff;
+            background-color: #ff8921;
+            -webkit-border-radius: 0.4rem;
+            -moz-border-radius: 0.4rem;
+            border-radius:0.4rem;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">意见</span>
+</div>
+<div class="comment-box">
+    <div class="comment-container">
+        <p>为更好的入住体验，请您对酒店作出评价</p>
+        <div class="comment-star">
+            <div class="comment-detail inlineblock"><i></i></div>
+            <div class="comment-detail inlineblock"><i></i></div>
+            <div class="comment-detail inlineblock"><i></i></div>
+            <div class="comment-detail inlineblock"><i></i></div>
+        </div>
+        <div class="comment-txt clearfix">
+            <div class="fl">差</div>
+            <div class="fl">一般</div>
+            <div class="fl">好</div>
+            <div class="fl">很好</div>
+        </div>
+        <div class="comment-submit">提交</div>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+</body>
+</html>

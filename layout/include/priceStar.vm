@@ -1,0 +1,26 @@
+<!-- 价格与星级弹出层 -->
+<div class="popup priceStarpopup">
+    <div class="content-block priceStarbox">
+        <h6 class="selectname">价格(单选)</h6>
+        <ul class="choosePrice clearfix">
+            <li class="selectedprice">不限</li>
+            <li>¥150元以下</li>
+            <li>¥150 - ¥300</li>
+            <li>¥301 - ¥450</li>
+            <li>¥451 - ¥600</li>
+            <li>¥601 - ¥1000</li>
+            <li>¥1000以上</li>
+        </ul>
+        <h6 class="selectname">星级(复选)</h6>
+        <dl class="chooseStar clearfix">
+            <dt class="selectedstar">不限</dt>
+            <dd>快捷连锁</dd>
+            <dd>二星级及以下/经济</dd>
+            <dd>三星级/舒适</dd>
+            <dd>四星级/高档</dd>
+            <dd>五星级/豪华</dd>
+        </dl>
+        <p class="confirmmodi" id="confirmStarPrice"><a href="javascript:;">确定</a></p>
+    </div>
+</div>
+<script src="$ctx/hotel/js/common/priceStar.js"></script>

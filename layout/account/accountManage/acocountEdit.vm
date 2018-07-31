@@ -1,0 +1,175 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        .create-account-container {
+            width: 100%;
+            height: 100%;
+            padding-top: 1.8rem;
+            background-color: #9b9b9b;
+        }
+        .create-account-form {
+            width: 80%;
+           /* height: 100%;*/
+            background-color: #fff;
+            margin: 8% auto;
+            -webkit-border-radius:0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius: 0.2rem;
+        }
+        .account-form {
+           /* position: relative;*/
+            width: 90%;
+            height: 12.5rem;
+            padding: 5% 5%;
+        }
+        .account-form input {
+            width: 91%;
+            height: 1.8rem;
+            margin-bottom: 2%;
+            border: 1px solid #d6d6d6;
+            -webkit-border-radius: 0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius:0.2rem;
+            font-size: 0.727rem;
+        }
+        .create-account-btn {
+            width: 60%;
+            height: 1.8rem;
+            line-height:220%;
+            text-align: center;
+            -webkit-border-radius: 0.8rem;
+            -moz-border-radius:0.8rem;
+            border-radius: 0.8rem;
+            border: 1px solid #f88b39;
+            margin: 0 20%;
+            font-size: 0.8rem;
+            color: #fff;
+            background-color: #f88b39;
+        }
+        .account-form .toggole-btn {
+            background-color: #ffb532;
+            border-color: #ffb532;
+        }
+        .create-account-btn:active {
+            background-color: #ffb532;
+            border-color: #ffb532;
+        }
+        .error-tip {
+            width: 88%;
+            height: 5%;
+            padding-left: 3%;
+            line-height: 5%;
+            font-size: 0.5rem;
+            color: #f36523;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<input type="hidden" id="userId" value="">
+<div class="statebox clearfix">
+    <a href="$ctx/hotel/wx/v1/company/queryAllUser?openid=$!openid" class="lastStep"><i></i></a>
+    <span class="thetittle">修改账户</span>
+</div>
+<div class="create-account-container">
+    <div class="create-account-form">
+        <form class="account-form">
+            <input type="text" class="sub-account-name" autofocus="autofocus" id="sub-account-name" placeholder="姓名" value="" name="sub-account-name" required>
+            <input type="tel" class="sub-account-num" id="sub-account-num" placeholder="电话" value="" name="sub-account-num" required>
+            <input type="mail" class="sub-account-mail" placeholder="邮箱" value="" name="sub-account-mail">
+            <input type="text" class="sub-account-id" placeholder="工号" value="" name="sub-account-id">
+            <input type="text" class="sub-account-department" placeholder="部门" value="" name="sub-account-department">
+            <div class="create-account-btn edit-btn">保存</div>
+        </form>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script>
+    window.onload = function() {
+        $('#userId').val(localStorage.getItem('editUserId'));
+        $(".sub-account-name").val(localStorage.getItem('editTrue_name'));
+        if(localStorage.getItem('editMobilephone')== null) {
+            $(".sub-account-num").val('');
+        }else {
+            $(".sub-account-num").val(localStorage.getItem('editMobilephone'));
+        }
+
+        if(localStorage.getItem('editEmail')==null) {
+            $(".sub-account-mail").val('');
+        }else {
+            $(".sub-account-mail").val(localStorage.getItem('editEmail'));
+        }
+        if(localStorage.getItem('editEmployee_code')== null) {
+            $(".sub-account-id").val(localStorage.getItem(''));
+        }else {
+            $(".sub-account-id").val(localStorage.getItem('editEmployee_code'));
+        }
+
+        if(localStorage.getItem('editDepartment')== null) {
+            $(".sub-account-department").val('');
+        }else {
+            $(".sub-account-department").val(localStorage.getItem('editDepartment'));
+        }
+    }
+</script>
+<script src="$ctx/hotel/js/account/accountManage/accountEdit.js?v=${jsVersion}"></script>
+</body>
+</html>

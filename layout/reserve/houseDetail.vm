@@ -1,0 +1,71 @@
+#set($linkSwiper=true)
+#set($ScriptSwiper=true)
+#parse("/hotel/layout/include/header.vm")
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">$!result.data.house.name</span>
+</div>
+<div class="fake"></div>
+<div class="houseDetailLayer">
+    <input type="hidden" class="house_id" value="$!result.data.house.house_id">
+    <input type="hidden" class="price_id" value="$!result.data.house.price_id">
+    #*<h6>$!result.data.house.name</h6>*#
+    <div href="javascript:" class="closeHouseDetail"><div>×</div></div>
+    #*<p class="thisHouseImg"><img src="#if($!result.data.house.logo) $!result.data.house.logo #else
+    $ctx/hotel/img/hotelimg.png #end" /></p>*#
+    <div class="housePictrues swiper-container">
+        <ul class="swiper-wrapper clearfix">
+            #if($!result.data.housePhoto.size()==0)
+                <li class="swiper-slide"><img src="$ctx/hotel/img/houseimg.png" /></li>
+            #else
+                #foreach($hotelPic in $result.data.housePhoto)
+                    <li class="swiper-slide"><img src="#if($!hotelPic.url)$!hotelPic.url #else /hotel/img/houseimg.png #end" data-imgId="$!housePhoto.photo_id" /></li>
+                #end
+            #end
+        </ul>
+        <div class="swiper-pagination"></div>
+    </div>
+    <ul class="featureList clearfix">
+        <li><span>早餐</span> $!result.data.house.breakfast_show</li>
+        <li><span>宽带</span>$!result.data.house.internet_desc</li>
+        <li><span>面积</span>$!result.data.house.area</li>
+        <li><span>无烟</span>$!result.data.house.smoking_show</li>
+        <li><span>可住</span>$!result.data.house.pmost_show</li>
+       #* <li><span>加床</span>不可加床</li>*#
+        <li><span>床型</span>$!result.data.house.bed_show</li>
+        <li><span>楼层</span>$!result.data.house.floor</li>
+    </ul>
+    <div class="moreFacilityBox">
+        <ul class="moreFacility">
+            <li class="clearfix"><span>科技/媒体</span><p class="fr">$!result.data.house.media_desc</p></li>
+            <li class="clearfix"><span>浴室</span><p class="fr">$!result.data.house.bath_desc</p></li>
+           #* <li class="clearfix"><span>便利设施</span><p class="fr">$!result.data.house.</p></li>
+            <li class="clearfix"><span>食品和饮料</span><p class="fr">$!result.data.house.</p></li>
+            <li class="clearfix"><span>服务及其他</span><p class="fr">$!result.data.house.</p></li>
+            <li class="clearfix"><span>室外/景观</span><p class="fr">$!result.data.house.</p></li>*#
+        </ul>
+        <p class="hidMoreFacility">收起更多房型设施<i class="reserveIcon"></i></p>
+    </div>
+    <p class="showMoreFacility">展开更多房型设施<i class="reserveIcon"></i></p>
+    <div class="noncancelability">
+        <div class="noncancelCon clearfix">
+            <span>特殊说明</span>
+            #foreach($item in $result.data.specialDesc)
+                <p class="fr">$velocityCount）$item.desc</p>
+            #end
+        </div>
+    </div>
+    <div class="reserveFixBox">
+        <p class="bottomGradient"></p>
+        <div class="reserveBox">
+            <i>¥</i>
+            <span class="thisHouseCost">$!result.data.house.price</span>
+            <a href="javascript:;" class="reserveNow fr">立即预定</a>
+        </div>
+    </div>
+</div>
+#parse("/hotel/layout/include/footer_js.vm")
+<script src="/hotel/js/reserve/houseDetail.js?v=${jsVersion}"></script>
+</body>
+</html>

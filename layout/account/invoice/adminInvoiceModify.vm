@@ -1,0 +1,143 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .invoice-complete-box {
+            margin: 2.2rem 2% 0;
+            width: 96%;
+            background-color: #fff;
+            -webkit-border-radius:0.1rem;
+            -moz-border-radius: 0.1rem;
+            border-radius: 0.1rem;
+        }
+        .invoice-container h3 {
+            line-height:4.8rem;
+            font-size: 1rem;
+            text-align: center;
+            color: #ff6100;
+        }
+        .invoice-complete {
+            width: 96%;
+            padding: 0 2% 2.424rem;
+
+        }
+        .invoice-complete input {
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+            height: 2.424rem;
+            font-size: 0.72rem;
+            border-bottom: 1px solid #cecece;
+        }
+        .invoice-complete .invoice-address {
+            margin-bottom: 1rem;
+        }
+        .invoice-line-link {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.6rem;
+            color: #ffa200;
+            width: 90%;
+            line-height: 2rem;
+            background-color: #fff1d7;
+            border: 2px solid #f36523;
+            -webkit-border-radius: 1.2rem;
+            -moz-border-radius: 1.2rem;
+            border-radius:1.2rem;
+            color: #ff6100;
+            font-size: 0.9rem;
+        }
+        .invoice-complete .error-tip {
+            width: 88%;
+            height: 5%;
+            padding-left: 3%;
+            line-height: 5%;
+            font-size: 0.5rem;
+            color: #f36523;
+            border: 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="$ctx/hotel/wx/v1/company/queryAllInvoice?openid=$!openid" class="lastStep"><i></i></a>
+    <span class="thetittle">修改发票</span>
+</div>
+<div class="invoice-complete-box">
+    <div class="invoice-container">
+        <h3>修改发票信息</h3>
+        <div class="invoice-complete">
+            <input type="hidden" value="" id="modifyInvoiceId">
+            <input type="text" name="name" id="invoice-name" class="invoice-name" placeholder="发票名称">
+            <span class="inlineblock error-tip hide"></span>
+            <input type="text" name="address" id="invoice-address" class="invoice-address" placeholder="发票地址">
+            <span class="inlineblock error-tip hide"></span>
+            <p><a href="javascript:;" class="invoice-line-link">提交</a></p>
+        </div>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/account/accountInfo/invoice/adminInvoiceModify.js?v=${jsVersion}"></script>
+</body>
+</html>

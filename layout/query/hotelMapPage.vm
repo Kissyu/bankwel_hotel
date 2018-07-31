@@ -1,0 +1,51 @@
+#parse("/hotel/layout/include/header.vm")
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">百度地图</span>
+</div>
+<div class="fake"></div>
+<style>
+    html,body {
+        width: 100%;
+        height:100%;
+    }
+    #allmap {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div id="allmap"></div>
+</body>
+</html>
+<script src="$!ctx/hotel/js/lib/zepto.min.js?v=${jsVersion}"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=xFMyMjdwoHI7zHLENAetXtDaqC056jjB&v=1.0"></script>
+<script type="text/javascript">
+    var lati = sessionStorage.getItem('jing');
+    var langti = sessionStorage.getItem('wei');
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.addControl(new BMap.ScaleControl());
+    var point=new BMap.Point(langti,lati);
+    map.centerAndZoom(point, 15);//初始化地图中心点
+    var marker = new BMap.Marker(point); //初始化地图标记
+
+    var gc = new BMap.Geocoder();//地址解析类
+    //添加标记拖拽监听
+    marker.addEventListener("dragend", function(e){
+        //获取地址信息
+        gc.getLocation(e.point, function(rs){
+            showLocationInfo(e.point, rs);
+        });
+    });
+
+    //添加标记点击监听
+    marker.addEventListener("click", function(e){
+        gc.getLocation(e.point, function(rs){
+            showLocationInfo(e.point, rs);
+        });
+    });
+
+    map.centerAndZoom(point, 15); //设置中心点坐标和地图级别
+    map.addOverlay(marker); //将标记添加到地图中
+
+</script>

@@ -20,21 +20,37 @@ var InvoiceInfo = (function(){
 		        <h1 class="title">请选择详细地址</h1>\
 		        </header>'
 		      });
-			  var billvalue={
-		          toolbarTemplate: '<header class="bar bar-nav">\
+			var billTitle={
+				toolbarTemplate: '<header class="bar bar-nav">\
 		          <button class="button button-link pull-right close-picker">确定</button>\
-		          <h1 class="title">请选择发票明细</h1>\
+		          <h1 class="title">请选择发票抬头</h1>\
 		          </header>',
-		          cols: [
-		            {
-		              textAlign: 'center',
-		              values: ['代订房费', '代订住宿费']
-		            }
-		          ]
-		        }
+				cols: [
+					{
+						textAlign: 'center',
+						values: ['北京银库信息服务有限公司', '北京银库科技有限公司']
+					}
+				]
+			}
+			$("#billTitle").picker(billTitle);
+			$("#selectBillTitle").live(CLICK,function(){
+				$("#billTitle").picker('open');
+			});
+			var billvalue={
+				  toolbarTemplate: '<header class="bar bar-nav">\
+				  <button class="button button-link pull-right close-picker">确定</button>\
+				  <h1 class="title">请选择发票明细</h1>\
+				  </header>',
+				  cols: [
+					{
+					  textAlign: 'center',
+					  values: ['代订房费', '代订住宿费']
+					}
+				  ]
+				}
 			  $("#billDetail").picker(billvalue);
 			  $("#rightGo").live(CLICK,function(){
-			  	$("#billDetail").picker('open');
+				$("#billDetail").picker('open');
 			  });
 		},
 		bindUI: function(){
@@ -71,7 +87,7 @@ var InvoiceInfo = (function(){
 					data.id=invoiceId;
 					var url = ctx+'/account/addOrUpdateInvoice';
 					$.ajax({
-						type: "post",
+						type: "get",
 						data: data,
 						url: url,
 						dataType: "json",

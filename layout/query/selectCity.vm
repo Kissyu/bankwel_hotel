@@ -1,0 +1,50 @@
+#set($ScriptLocation=true)
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="manualSelect">
+        <div class="statebox clearfix">
+            <a href="$!ctx/hotel/wx/v1/company/welcome?openid=$!openid" class="lastStep"><i></i></a>
+            <span class="thetittle">选择城市</span>
+            <a href="$!ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+        </div>
+        <div class="fake"></div>
+        <div class="searchCityBox">
+            <p class="searchInpBox">
+                <input type="text" id="citySearch" placeholder="城市" readonly />
+            </p>
+        </div>
+        <div class="searchCityFake"></div>
+        <div class="curcity" id="current">当前</div>
+        <ul class="citylist clearfix">
+            <li id="myGis">我的位置</li>
+        </ul>
+        <div class="curcity" id="history">历史选择</div>
+        <ul class="citylist clearfix" id="pastchoice">
+        </ul>
+        <div class="curcity" id="hot">热门城市</div>
+        <ul class="citylist clearfix" id="hotcity">
+        </ul>
+        <div id="letter"></div>
+        <ul class="letterlist"></ul>
+    </div>
+    <div class="inputSearchLayer">
+        <div class="inputSearchBox clearfix">
+            <a href="javascript:history.back();" class="goback fl"><i></i></a>
+            <p class="searchInpBox fl">
+                <input type="text" id="citySearchInp" placeholder="城市" />
+            </p>
+            <a href="javascript:;" class="cancleSearch fr" id="cancleSearch">取消</a>
+        </div>
+        <div class="searchResult">
+            <ul class="searchedCityList">
+            </ul>
+            <p class="cityEmpty">无联想结果</p>
+        </div>
+    </div>
+    #parse("/hotel/layout/include/footer_js.vm")
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xFMyMjdwoHI7zHLENAetXtDaqC056jjB"></script>
+    <script src="$ctx/hotel/js/query/selectCity.js?v=${jsVersion}"></script>
+    <!-- 代码部分end -->
+
+</body>
+</html>

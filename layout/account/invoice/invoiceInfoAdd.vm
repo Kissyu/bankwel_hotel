@@ -1,0 +1,64 @@
+#set($ScriptSmCity=true)
+#parse("/hotel/layout/include/header.vm")
+    <div class="statebox clearfix"> 
+		<a href="javascript:history.back();" class="lastStep"><i></i></a>
+		<span class="thetittle">发票信息</span>
+		<a href="javascript:;" class="completeFill fr" id="completeFill">完成</a>
+    </div>
+	<div class="fake"></div>
+	<div class="invoiceInfo">
+		<input type="hidden" name="openid" id="openid" value="$!openid" />
+        <div class="new-main fillTime invoiceFlag clearfix">
+            是否索要发票
+            <label class="label-switch fr">
+                <input type="checkbox" id="needInvoice" />
+                <div class="checkbox"></div>
+            </label>
+        </div>
+		<div class="invoice-box">
+            <div class="new-main fillTime clearfix">
+                发票注明酒店名和入离时间
+                <label class="label-switch fr">
+                    <input type="checkbox" id="needTime">
+                    <div class="checkbox"></div>
+                </label>
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">发票抬头</span>
+                <div class="billDetail inpInfo fl">
+                    <input type="text" placeholder="请输入发票抬头" class="inpInfo" id="billTitle" />
+                    <em id="selectBillTitle" class="gotoselect"></em>
+                </div>
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">发票明细</span>
+                <div class="billDetail inpInfo fl">
+                    <input type="text" value="代订房费" id="billDetail" />
+                    <em id="rightGo" class="gotoselect"></em>
+                </div>
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">收件信息</span>
+                <input type="text" placeholder="姓名" class="inpInfo" id="recipient" />
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">联系方式</span>
+                <input type="tel" placeholder="手机号码" class="inpInfo" id="phone" />
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">所在地区</span>
+                <div class="billDetail inpInfo fl">
+                    <input type="text" class="inpInfo" placeholder="请选择省市区" id='city-picker'/>
+                    <em class="gotoselect"></em>
+                </div>
+            </div>
+            <div class="billItem clearfix">
+                <span class="billInfoName">详细地址</span>
+                <input type="text" class="detailAdd" placeholder="请输入详细地址" id="detailAdd" />
+            </div>
+        </div>
+		</div>
+#parse("/hotel/layout/include/footer_js.vm")
+	<script src="$ctx/hotel/js/account/accountInfo/invoice/invoiceInfo.js?v=${jsVersion}"></script>
+</body>
+</html>

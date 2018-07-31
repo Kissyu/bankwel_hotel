@@ -1,0 +1,131 @@
+#set($linkSwiper=true)
+#set($ScriptSwiper=true)
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <input type="hidden" id="hotelId" value="$!result.data.hotel.hotel_id" />
+    <div class="statebox clearfix">
+        <a href="$!ctx/hotel/wx/v1/hotel/queryHotelList?openid=$!openid" class="lastStep"><i></i></a>
+        <span class="thetittle nowrap-text">$!result.data.hotel.name</span>
+        <a href="$!ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+    </div>
+    <div class="fake"></div>
+    <div class="new-main hotelDetailInfo">
+        <div class="hotelName clearfix">
+            <h5 class="fl">$!result.data.hotel.name</h5>
+            <div class="#if($!result.data.hotel.isFav==1) enshrined #end enshrineBox fr"  id="enshrine">
+                <a href="javascript:;" class="enshrineBtn reserveIcon fr"></a>
+            </div>
+        </div>
+        <ul class="photobox clearfix">
+            #if($!result.data.hotelPhoto.size()==0)
+                <li><img src="$ctx/hotel/img/hotelimg.png" /></li>
+            #else
+                #foreach($hotelPic in $result.data.hotelPhoto)
+                    <li><img src="#if($!hotelPic.url)$!hotelPic.url #else /hotel/img/hotelimg.png #end" data-imgId="$!hotelPic.photo_id" /></li>
+                    #if($velocityCount>=3)
+                        #break
+                    #end
+                #end
+            #end
+        </ul>
+        <div class="mark" id="photo_mark"></div>
+        <div class="showbox swiper-container">
+            <ul class="showphotobox swiper-wrapper clearfix">
+                #if($!result.data.hotelPhoto.size()==0)
+                    <li class="swiper-slide"><img src="$ctx/hotel/img/hotelimg.png" /></li>
+                #else
+                    #foreach($hotelPic in $result.data.hotelPhoto)
+                        <li class="swiper-slide"><img src="#if($!hotelPic.url)$!hotelPic.url #else /hotel/img/hotelimg.jpg #end" data-imgId="$!hotelPic.photo_id" /></li>
+                    #end
+                #end
+            </ul>
+            <div class="swiper-pagination"></div>
+            <div class="closeSwiper">×</div>
+        </div>
+        <div class="hotelLocation clearfix">
+            <input type="hidden" id="mapLocationLat" value="$!result.data.hotel.lat">
+            <input type="hidden" id="mapLocationLng" value="$!result.data.hotel.lng">
+            <div class="addressBox fl"><p class="hotelAddress">$!result.data.hotel.address_title</p></div>
+            <div class="locationMap fr">
+                <span class="map-icon reserveIcon"></span>
+                <p>地图</p>
+            </div>
+        </div>
+    </div>
+    <div class="editableDate new-main">
+        <div class="startDayBox liveHotelDay fl">
+            <input class="selectLiveLeave" type="text" id="checkintime" />
+            <p class="fl">
+                #*<span class="startDay startday" data-start=""></span>*#
+                <span class="startDay"></span>
+                <span class="startWeek fl"></span>
+            </p>
+            <p class="toModiStart fr">
+                <span>入住</span>
+                <span class="rightBtn fr"></span>
+            </p>
+            <p class="totalDay totalday"></p>
+        </div>
+        <div class="endDayBox liveHotelDay fr">
+            <input class="selectLiveLeave selectEnd" type="text" id="leavetime" />
+            <p class="fl">
+                #*<span class="endDay endday" data-end=""></span>*#
+                <span class="endDay" data-end=""></span>
+                <span class="endWeek fl"></span>
+            </p>
+            <p class="toModiEndBox fr">
+                <span class="toModiEnd">离店</span>
+                <span class="rightBtn fr"></span>
+            </p>
+        </div>
+    </div>
+    <div>
+    <ul class="houseList">
+        #if($!result.data.houseList.length!=0)
+            #foreach($houseItem in $result.data.houseList)
+            <li>
+                <input type="hidden" class="houseID" value="$!houseItem.house_id">
+                <div class="new-main houseTypeList clearfix">
+                    <div class="houseImg fl"><img src="#if($!houseItem.logo) $!houseItem.logo #else $ctx/hotel/img/houseimg.png #end" /></div>
+                    <div class="houseDesc fl">
+                        <h6 class="nowrap-text">$!houseItem.name</h6>
+                        <p class="houseInDeatail nowrap-text">$!houseItem.sub_title</p>
+                    </div>
+                    <div class="costZera fr">
+                        <i>¥</i>
+                        <span class="houseMinCost">$!houseItem.price</span>起
+                        <span class="hiddenDetailMoney"><em class="reserveIcon"></em></span>
+                    </div>
+                </div>
+                <dl class="detailMoneyBox">
+                    #foreach($priceItem in $houseItem.priceList)
+                        <dd class="new-main clearfix">
+                            <input type="hidden" class="priceId" value="$!priceItem.price_id">
+                            <div class="payMethodDesc priceIdList fl">
+                                <h6 class="concreteHouseDesc">$!priceItem.sub_title </h6>
+                                #*<p class="houseInDeatail">不可取消</p>*#
+                            </div>
+                            <div class="reserveZera fr">
+                                <p class="houseCostZera fl">
+                                    <i>¥</i>
+                                    <span class="houseMinCost">$!priceItem.price_show</span>
+                                </p>
+                                <a href="javascript:;" class="reserveBtn">预定</a>
+                            </div>
+                        </dd>
+                    #end
+                </dl>
+            </li>
+            #end
+        #else
+            <div class="nohouseTip">无合适房间</div>
+        #end
+    </ul>
+    </div>
+    <div id="houseDetail"></div>
+    #parse("/hotel/layout/include/footer_js.vm")
+    <script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=xFMyMjdwoHI7zHLENAetXtDaqC056jjB&v=1.0"></script>
+    <script src="/hotel/js/reserve/hotelInfo.js?v=${jsVersion}"></script>
+    #parse("/hotel/layout/include/midiCheckInOut.vm")
+</body>
+</html>

@@ -1,0 +1,54 @@
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <div class="statebox clearfix">
+        <a href="$!ctx/hotel/wx/v1/company/welcome?openid=$!openid" class="lastStep"><i></i></a>
+        <span class="thetittle nowrap-text">酒店列表</span>
+        <a href="$!ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+    </div>
+    <div class="fake"></div>
+    <div class="searchCityBox searchInList">
+        <p class="searchInpBox gokeywordfilter">
+            <input type="text" id="citySearch" placeholder="关键字/位置/酒店名" readonly />
+            <span class="deleteKeyword"></span>
+        </p>
+    </div>
+    <div class="searchFake"></div>
+    <div class="content queryHotelListBox" id="content">
+        <div class="queryHotelList" id="queryHotelList">
+
+        </div>
+        <!--加载提示符 -->
+        <div class="infinite-scroll-preloader">
+            <div class="preloader"></div>
+        </div>
+        <div class="nomoredata">没有更多数据了</div>
+    </div>
+    <div class="hotelListSpace"></div>
+    <!-- 底部筛选栏 -->
+    <ul class="Filterfeld">
+        <li class="open-popup order" data-popup=".priceStarpopup">
+            <i class="reserveIcon costIcon"></i>
+            <p>价格/星级</p>
+        </li>
+        <li class="open-popup type" data-popup=".dispopup">
+            <i class="reserveIcon sortIcon"></i>
+            <p>排序</p>
+        </li>
+    </ul>
+    <!-- 排序弹出层 -->
+    <div class="popup dispopup type-all">
+        <ul class="content-block popupbox sortpopupbox">
+            <li data-sort="dis_asc">距离  近→远</li>
+            <li data-sort="dis_desc">距离  远→近</li>
+            <li data-sort="price_asc">价格  低→高</li>
+            <li data-sort="price_desc">价格  高→低</li>
+            <li data-sort="default" class="curSortStandard">默认排序</li>
+        </ul>
+    </div>
+    <!--通用js引入-->
+    #parse("/hotel/layout/include/footer_js.vm")
+    #parse("/hotel/layout/include/priceStar.vm")
+    <!-- 价格与星级弹出层 -->
+    <script src="$ctx/hotel/js/query/queryList.js?v=${jsVersion}"></script>
+</body>
+</html>

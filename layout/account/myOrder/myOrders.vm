@@ -1,0 +1,357 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        p{margin: 0 !important; }
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        .orders-type {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            /*padding-top: 1.8rem;*/
+        }
+        .orders-type-box {
+            width: 100%;
+            height:1.616rem;
+            padding: 0.3636rem 0;
+            background-color: #fff;
+        }
+        .list-nav {
+            position: relative;
+            width: 49%;
+            float: left;
+        }
+        .order-type-filter {
+            width: 99%;
+            height:1.616rem;
+            line-height: 1.616rem;
+            color:#434242;
+            font-size: 0.8rem;
+            border-left: 1px solid #d6d6d6;
+        }
+        .mar-left-1 {
+            margin-left: -1px;
+        }
+        .order-type-filter span {
+            width: 80%;
+            margin-left: 20%;
+        }
+        .toggle-color {
+            color:#f36523;
+        }
+        .order-type-filter i {
+            position: absolute;
+            top: 0.5rem;
+            left: 63%;
+            width: 0.828rem;
+            height: 0.424rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat 0rem -1.181rem;
+            background-size: 1102%;
+        }
+        .order-type-filter .toggle-bg {
+            position: absolute;
+            top: 0.5rem;
+            left: 63%;
+            width: 0.828rem;
+            height: 0.424rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat 0rem -1.58rem;
+            background-size: 1102%;
+        }
+        .orders-list {
+            width: 100%;
+        }
+        .orders-list .orders-list-box {
+            width: 100%;
+        }
+        .order-list-per {
+            width: 100%;
+            height: 6.949rem;
+            background-color: #fff;
+            margin-top: 0.405rem;
+        }
+        .payNow {
+            width: 100%;
+            height: 6.949rem;
+        }
+        .order-tit {
+            position: relative;
+            width: 100%;
+            height: 1.616rem;
+            line-height: 1.616rem;
+            font-size: 0.727rem;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .order-tit .order-status {
+            padding-left: 2%;
+            color: #ff8921;
+        }
+        .order-num {
+            position: absolute;
+            color: #959595;
+            right: 2%;
+            top: 0;
+        }
+        .order-hotel {
+            height: 5.3rem;
+            width: 96%;
+            padding: 0 2%;
+        }
+        .order-hotel-img {
+            width: 24%;
+            height: 5.3rem;
+        }
+        .order-hotel-img  img {
+            width: 3.838rem;
+            height: 3.838rem;
+            margin: 0.731rem auto;
+            -webkit-border-radius:0.2rem;
+            -moz-border-radius: 0.2rem;;
+            border-radius: 0.2rem;
+        }
+        .order-hotel-detail {
+            padding-left: 2%;
+            width: 74%;
+            height: 5.3rem;
+            overflow: hidden;
+        }
+        .order-hotel-detail h3 {
+            padding-top: 0.8rem;
+            height: 1.1rem;
+            line-height: 1.1rem;
+            font-size: 0.8rem;
+            color: #434242;
+            overflow: hidden;
+        }
+        .order-hotel-detail span {
+            height:1.07rem;
+            line-height:1.07rem;
+            font-size: 0.6rem;
+            color:#959595;
+        }
+        .order-hotel-cost {
+            position: relative;
+            top: -0.4rem;
+            height: 1.8rem;
+            width: 100%;
+        }
+        .hotel-price {
+            line-height: 1.8rem;
+            font-size: 0.7rem;
+            color: #ff7700;
+        }
+        .hotel-price i {
+            font-size: 0.9rem;
+        }
+        .order-hotel-detail-more {
+            position: absolute;
+            top: 0.4rem;
+            right: 0rem;
+            height: 1.3rem;
+            width: 45%;
+            line-height: 1.3rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #fff;
+            background-color: #ff8921;
+            -webkit-border-radius:0.6rem;
+            -moz-border-radius: 0.6rem;
+            border-radius: 0.6rem;
+        }
+        .order-type-list {
+            position: relative;
+            width: 100%;
+        }
+        .order-type-list ul {
+            position: absolute;
+            top: 1.9796rem;
+            left: 0;
+            width: 99%;
+            z-index: 333;
+        }
+        .order-type-list li {
+            width: 80%;
+            padding-left:20%;
+            line-height: 1.242rem;
+            font-size: 0.7rem;
+            background-color: #fff;
+        }
+        .h-white {
+            width: 100%;
+            height: 2rem;
+        }
+        .Filterfeld{
+            position:fixed;
+            height:2.625rem;
+            width:100%;
+            background:#343748;
+            bottom:0;
+            left:0;
+        }
+        .Filterfeld li{
+            /*width:33.33%;*/
+            width:50%;
+            height:100%;
+            float:left;
+        }
+        .Filterfeld p{
+            width:100%;
+            font-size:0.625rem;
+            color:#fff;
+            height: 100%;
+            text-align:center;
+            line-height: 369%;
+        }
+        /*排序弹出层*/
+        .modipopup {
+            bottom:0;
+        }
+        .sortpopupbox{
+            padding:0;
+            margin:0.5rem 0 0 0;
+        }
+        .sortpopupbox li{
+            width:100%;
+            height:1.72rem;
+            border-bottom:1px solid #d2d2d2;
+            color:#000;
+            font-size:0.75rem;
+            line-height:2.03rem;
+            text-align:center;
+        }
+        .sortpopupbox .curSortStandard{
+            color:#f36523;
+        }
+        .content.queryHotelListBox{
+            top:1.8rem;
+            margin-bottom:3rem;
+        }
+        .order-content {
+            width: 100%;
+        }
+        .nomoredata {
+            text-align: center;
+            height:2.2rem;
+            line-height: 2.2rem;
+            color: #999;
+            font-size: 0.66rem;
+            display:none;
+        }
+        .click-box {
+            width: 100%;
+        }
+        .click-load-more {
+            width: 100%;
+            height: 2.0rem;
+            line-height: 2.0rem;
+            color: #ccc;
+            font-size: 0.6rem;
+        }
+        #content {
+            padding-bottom: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="$ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="lastStep"><i></i></a>
+    <span class="thetittle">订单列表</span>
+</div>
+<div class="h-white">
+</div>
+<div id="content" class="content queryHotelListBox">
+    <div class="order-content"></div>
+    <!--加载提示符 -->
+    <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+    </div>
+    <div class="nomoredata">没有更多数据了</div>
+</div>
+<!-- 底部筛选栏 -->
+<ul class="Filterfeld">
+    <li class="open-popup type" data-popup=".type-all">
+        <i class="reserveIcon sortIcon"></i>
+        <p>订单类型</p>
+    </li>
+    <li class="open-popup order" data-popup=".order-all">
+        <i class="reserveIcon sortIcon"></i>
+        <p>排序</p>
+    </li>
+</ul>
+<!-- 排序弹出层 -->
+<div class="popup modipopup type-all">
+    <ul class="content-block popupbox sortpopupbox">
+        <li data-type="">全部订单</li>
+        <li data-type="1">待处理</li>
+        <li data-type="2">待入住</li>
+        <li data-type="3">已入住</li>
+        <li data-type="4">已失效</li>
+    </ul>
+</div>
+<div class="popup modipopup order-all">
+    <ul class="content-block popupbox sortpopupbox">
+        <li data-order="time_asc">倒序 </li>
+        <li data-order="time_desc">正序</li>
+    </ul>
+</div>
+</body>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/account/myOrder/myOrders.js?v=${jsVersion}"></script>
+</html>

@@ -1,0 +1,300 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 130%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .forget-psw-box {
+            width: 100%;
+            height: 100%;
+            padding-top: 1.8rem;
+            background-color: #9b9b9b;
+        }
+        .forget-psw-container {
+            width: 96%;
+            height: 19rem;
+            margin: 0.2rem auto;
+            background-color: #fff;
+            -webkit-border-radius: 0.2rem;
+            -moz-border-radius: 0.2rem;
+            border-radius:0.2rem;
+        }
+        .forget-psw-container .get-check-num {
+            width: 90%;
+            padding: 1.2rem 5% 0;
+            position: relative;
+        }
+        .get-check-num i {
+            width: 50%;
+            line-height:3.2rem;
+            font-size: 0.9rem;
+            color: #434242;
+        }
+        .get-check-num span {
+            width: 40%;
+            height: 1.6rem;
+            line-height:1.6rem;
+            font-size: 0.72rem;
+            color: #fff;
+            text-align: center;
+            background-color: #f88b39;
+            -webkit-border-radius: 0.8rem;
+            -moz-border-radius: 0.8rem;
+            border-radius:0.8rem;
+        }
+        .get-check-num .toGray{
+            text-align: center;
+            background-color: #ccc;
+        }
+        .get-check-num input {
+            display: block;
+            width: 94%;
+            height: 1.9rem;
+            border: 1px solid #c0c0c0;
+            margin: 0.3rem auto 0;
+            -webkit-border-radius: 0.8rem;
+            -moz-border-radius:0.8rem;
+            border-radius: 0.8rem;
+
+        }
+        .get-check-num .getVertify {
+            position: absolute;
+            top: 1.65rem;
+            right: 1rem;
+        }
+        .forget-psw-container .forgetPsw-submit {
+            display: block;
+            width: 60%;
+            height: 1.6rem;
+            background-color: #f88b39;
+            -webkit-border-radius: 0.8rem;
+            -moz-border-radius: 0.8rem;
+            border-radius:0.8rem;
+            color: #fff;
+            font-size: 0.8rem;
+            margin: 0.4545rem auto 0;
+        }
+
+        /*验证弹窗*/
+        .mask {
+            display:none;
+            position: fixed;
+            left: 0;
+            top: 1.8rem;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            z-index: 200;
+        }
+        .veritify_mobile_mask_bg {
+            position:fixed;
+            border-radius:3px;
+            width: 14rem;
+            height: 6.6rem;
+            top:30%;
+            left:50%;
+            margin:-4.3rem 0 0 -7.5rem;
+            padding:1rem .5rem;
+            background-color: #fff;
+            z-index: 210;
+            display:none;
+        }
+        .inpAuthcode{
+            font-size:0.75rem;
+            margin-bottom:0.5rem;
+        }
+        .authcodeInpbox{
+            width:52.73%;
+            height:2rem;
+            border:1px solid #dcdbdb;
+            float:left;
+            font-size:0.75rem;
+        }
+        .veriCode{
+            float:left;
+            text-align:center;
+            width:35%;
+            height:2rem;
+            color:#444445;
+            border:1px solid #d6d6d6;
+            font-size:0.75rem;
+            margin-left:.5rem;
+            line-height:2rem;
+        }
+        .loginverifybox input{
+            width:40.73%;
+        }
+        .loginveriCode{
+            float:left;
+            text-align:center;
+            width:31.27%;
+            height:100%;
+            color:#444445;
+            border-left:1px solid #d6d6d6;
+            font-size:0.75rem;
+            box-sizing:border-box;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            line-height:1.875rem;
+        }
+        .bindItem{
+            width:100%;
+            height:2.1875rem;
+            line-height:2.1875rem;
+            font-size:0.75rem;
+            color:#444445;
+            border-bottom:1px solid #d6d6d6;
+        }
+        .bindItem input{
+            float:left;
+            width:62%;
+            height:2.1875rem;
+            padding:0;
+            font-size:0.75rem;
+        }
+        .bindItemName{
+            width:38%;
+            float:left;
+        }
+        .pswItem .bindItemName{
+            color:#79797a;
+            width:28%;
+        }
+        .pswItem input{
+            width:72%;
+        }
+        .phoneItem input{
+            width:71%;
+        }
+        .phoneItem .countdown{
+            width:66%;
+        }
+        .regItem .countdown{
+            width:38%;
+        }
+        .vertify_letter{
+            width:50%;
+            margin:0 auto;
+            margin-top:1rem;
+        }
+        .vertify_letter input{
+            width:100%;
+            height:1.8rem;
+            color:#fff;
+            font-size:0.75rem;
+            background-color:#ffa200;
+        }
+        .close_mask {
+            position:absolute;
+            right: 0.5rem;
+            top: 0.4rem;
+            font-size: 1.4rem;
+            color:#546c72;
+        }
+        .get-check-num .error-tip {
+            width: 88%;
+            height: 5%;
+            padding-left: 3%;
+          /*  line-height: 5%;*/
+            font-size: 0.4rem;
+            color: #f36523;
+            border: 0;
+            background-color: #fff;
+        }
+        .get-check-num .error-tip-all {
+            width: 88%;
+            height: 5%;
+            padding-left: 3%;
+            font-size: 0.4rem;
+            color: #f36523;
+            border: 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:;" class="lastStep"><i></i></a>
+    <span class="thetittle">登录</span>
+</div>
+<div class="forget-psw-box">
+    <div class="forget-psw-container">
+        <div class="get-check-num">
+            <input type="tel" id="mobile-num" class="mobile-num" placeholder="请输入手机号">
+            <span class="getVertify inlineblock">获取验证码</span>
+            <span class="error-tip hide"></span>
+            <input type="text" id="check-num" placeholder="请输入验证码">
+            <span class="error-tip hide"></span>
+            <input type="password" id="new-psw" placeholder="请输入新密码">
+            <span class="error-tip hide"></span>
+            <input type="password" id="recheck-new-psw" placeholder="请再次输入新密码">
+            <span class="error-tip hide"></span>
+            <span class="error-tip-all hide"></span>
+        </div>
+        <a href="javascript:;"><input type="button" class="forgetPsw-submit" value="提交"></a>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script src="$ctx/hotel/js/login/forgetPsw.js?v=${jsVersion}"></script>
+</body>
+</html>

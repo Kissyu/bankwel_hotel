@@ -1,0 +1,182 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .fake{
+            width:100%;
+            height: 1.8rem;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .login-box {
+            margin: 2.2rem 2% 0;
+            width: 96%;
+            background-color: #fff;
+            -webkit-border-radius:0.1rem;
+            -moz-border-radius: 0.1rem;
+            border-radius: 0.1rem;
+        }
+        .lexing-logo {
+            width: 100%;
+            height: 5.66rem;
+        }
+        .lexing-logo img {
+            display: block;
+            padding: 1.2rem 0;
+            width: 5.818rem;
+            height: 2.747rem;
+            margin: 1.4565rem auto 0;
+        }
+        .login-info-box {
+            position: relative;
+            width: 90%;
+            height: 2rem;
+            border: 1px solid #d1d1d1;
+            -webkit-border-radius: 2rem;
+            -moz-border-radius: 2rem;
+            border-radius: 2rem;
+            margin: 1rem auto 0.3rem;
+        }
+        .login-info-box i {
+            position: absolute;
+            left: 0.2rem;
+            top: 0.2rem;
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+        .i-1 {
+            background: url("$ctx/hotel/img/login-ico-1.png") no-repeat center center;
+            background-size: cover;
+        }
+        .i-2 {
+            background: url("$ctx/hotel/img/login-ico-2.png") no-repeat center center;
+            background-size: cover;
+        }
+        .login-info-box input {
+            margin-left: 1.6rem;
+            height: 2rem;
+            font-size: 0.75rem;
+        }
+        .login-jump {
+            width: 100%;
+        }
+        .login-jump p {
+            width: 100%;
+        }
+        .login-jump a {
+            display: block;
+            margin: 0 auto;
+            line-height: 2.424rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #ffa200;
+        }
+        .login-jump .line-link {
+            width: 40%;
+            text-decoration: underline;
+        }
+        .login-jump .login-btn {
+            width: 90%;
+            line-height: 2.2rem;
+            background-color: #fff1d7;
+            border: 2px solid #f36523;
+            -webkit-border-radius: 1.2rem;
+            -moz-border-radius: 1.2rem;
+            border-radius:1.2rem;
+            color: #ff6100;
+            font-size: 0.9rem;
+        }
+        .login-info-box .error-tip {
+            width: 88%;
+            height: 5%;
+            padding-left: 3%;
+            line-height: 5%;
+            font-size: 0.5rem;
+            color: #f36523;
+            border: 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="openid" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="javascript:history.back();" class="lastStep"><i></i></a>
+    <span class="thetittle">登录</span>
+</div>
+<div class="login-box">
+    <div class="lexing-logo">
+        <img src="$ctx/hotel/img/lexing-logo.png" alt="lexing-logo">
+    </div>
+    <div class="login-info-box">
+        <i class="inlineblock i-1"></i><input type="tel" id="user-name" placeholder="手机号登录">
+        <span class="inlineblock error-tip hide"></span>
+    </div>
+    <div class="login-info-box">
+        <i class="inlineblock i-2"></i><input type="password" id="user-pass" placeholder="密码">
+        <span class="inlineblock error-tip hide"></span>
+    </div>
+    <div class="login-jump">
+        <p><a href="$ctx/hotel/wx/v1/company/forgetPasswordMain?openid=$!openid" class="line-link">忘记密码</a></p>
+        <p><a href="javascript:;" class="login-btn">登录</a></p>
+        <p><a href="$ctx/hotel/wx/v1/company/registerMain?openid=$!openid" class="line-link">注册</a></p>
+    </div>
+</div>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script>
+</script>
+<script src="$ctx/hotel/js/login/login.js?v=${jsVersion}"></script>
+</body>
+</html>

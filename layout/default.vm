@@ -1,0 +1,4 @@
+我是default页面内容
+<div class="wrap">
+    $!{screen_content}
+</div>

@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <title>Jfinal-velocity</title>
+    <head></head>
+    <body>
+        我是test页面内容2
+        <div class="wrap">
+            $!{user_name}
+        </div>
+        #parse("/hotel/layout/default.vm")
+            $date.get('yyyy-M-d H:m:s')
+            $link.contextPath
+    </body>
+</html>

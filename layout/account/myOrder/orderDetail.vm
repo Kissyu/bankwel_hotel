@@ -1,0 +1,611 @@
+#parse("/hotel/layout/include/constants.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>乐行</title>
+    <link rel="stylesheet" href="$ctx/hotel/css/common.css">
+    <link rel="stylesheet" href="$ctx/hotel/css/sm.min.css">
+    <style>
+        html,body {width: 100%;height: 100%;
+            background-color: #f2f2f2;}
+        /*nav*/
+        .statebox{
+            width:100%;
+            height: 1.8rem;
+            background-color: #f36523;
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.8rem;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:100;
+        }
+        .thetittle{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            text-align: center;
+        }
+        .completeFill{
+            position:absolute;
+            top:0;
+            right:0;
+            padding-right:2.04%;
+            z-index:5;
+        }
+        .lastStep{
+            width:16%;
+            height:100%;
+            padding-left:2.04%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:5;
+        }
+        .lastStep i,.returnback i{
+            width:0.485rem;
+            height:0.969rem;
+            margin-top:0.4155rem;
+            background:url($ctx/hotel/img/lastStep.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        .personalCenter{
+            position:relative;
+            z-index:5;
+            padding-right:3.54%;
+            font-size:0.625rem;
+            color: #fff;
+        }
+        .myIcon{
+            margin:0.45rem 0.2rem 0 0;
+            width:0.9rem;
+            height:0.9rem;
+            background:url($ctx/hotel/img/hotel-index.png) no-repeat 0 center;
+            background-size:contain;
+            float:left;
+        }
+        /*content*/
+        .reservations-sure {
+            position: relative;
+            width: 96%;
+            padding: 1.8rem 2% 0;
+            height: 2.424rem;
+            background-color: #fff2d9;
+            margin-bottom: 0.4rem;
+        }
+        .sure-order-ico {
+            position: absolute;
+            width: 1.03rem;
+            height: 1.03rem;
+            left: 2%;
+            top: 2.497rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -5rem 0rem;
+            background-size: 1000%;
+        }
+        .reservations-sure span {
+            position: absolute;
+            top: 2.497rem;
+            left: 12%;
+            top: 2.497rem;
+            height:1.03rem;
+            line-height:1.03rem;
+            color: #f36523;
+            font-size: 0.9rem;
+        }
+        .reservations-sure em {
+            position: absolute;
+            top: 2.497rem;
+            left: 30%;
+            top: 2.497rem;
+            height:1.03rem;
+            line-height:1.03rem;
+            color: #f36523;
+            font-size: 0.6rem;
+        }
+        .book-hotel-details {
+            width: 100%;
+            background-color: #fff;
+            margin-top: 2.22rem;
+            margin-bottom: 0.4rem;
+        }
+        .hotel-detail-title {
+            width:100%;
+        }
+        .hotel-detail-title a {
+            position: relative;
+            display: block;
+            width: 96%;
+            padding: 0 2%;
+            height: 2.02rem;
+            line-height:2.02rem;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .hotel-detail-title h3 {
+            font-size: 0.8rem;
+            font-weight:bold;
+            color: #434242;
+        }
+        .hotel-detail-title span {
+            position: absolute;
+            right: 2%;
+            top: 0;
+            font-size: 0.6rem;
+            color: #ff8921;
+        }
+        .hotel-detail-more {
+            width: 96%;
+            padding: 0 2% 0.4rem;
+           /* margin-bottom: 0.4rem;*/
+        }
+        .hotel-detail-more p {
+            margin: 0;
+        }
+        .hotel-detail-location {
+            position: relative;
+            width: 100%;
+            height: 2.22rem;
+        }
+        .hotel-detail-location i {
+            position: absolute;
+            left: 0%;
+            top: 0.706rem;
+            width: 0.65rem;
+            height: 0.808rem;
+            background: url("$ctx/hotel/img/account-ico.png") no-repeat -1.1rem -1.47rem;
+            background-size: /*1655%*/ 10.7575rem;
+        }
+        .hotel-detail-location em {
+            margin-left: 7%;
+            font-size: 0.6rem;
+            height: 0.808rem;
+            line-height:0.808rem;
+            color: #959595;
+            margin-top: 0.706rem;
+            overflow: hidden;
+        }
+        .book-hotel-type {
+            width: 100%;
+            line-height:1.2rem;
+            font-size: 0.7rem;
+        }
+        .book-hotel-type em {
+            color: #434242;
+        }
+        .hotel-detail-advantage {
+            width: 100%;
+            font-size:0.7rem;
+            color: #959595;
+            /*border-bottom: 1px solid #d6d6d6;*/
+        }
+        .hotel-detail-advantage p {
+            margin: 0;
+            line-height: 1.4rem;
+        }
+        .hotel-detail-advantage em {
+            line-height:1.1rem;
+        }
+        /*.check-order {
+            width: 100%;
+            height: 2.424rem;
+        }
+        .check-order a {
+            display: block;
+            width: 50%;
+            height: 1.6rem;
+            margin: 0.647rem auto;
+            background-color: #ff8921;
+            color: #fff;
+            font-size: 0.6rem;
+            text-align: center;
+            line-height: 1.6rem;
+            -webkit-border-radius:0.8rem;
+            -moz-border-radius:0.8rem;
+            border-radius: 0.8rem;
+        }*/
+        .book-info {
+            width: 96%;
+            padding: 0 2%;
+            background-color: #fff;
+        }
+        .book-info-title {
+            width: 100%;
+            line-height: 2.02rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #434242;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .book-info-detail {
+            width: 100%;
+        }
+        .book-info-detail .book-info-list {
+            width: 100%;
+           /* margin-bottom: 2.4rem;*/
+        }
+        .book-info-list tr {
+            width: 100%;
+            height:2.02rem;
+            line-height: 2.02rem;
+            font-size: 0.672rem;
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .book-info-list .td-l {
+            width: 28%;
+            color:#959595;
+        }
+        .book-info-list .td-r {
+            width: 72%;
+        }
+        .book-info-list .bor-bot-white {
+            border-bottom: 1px solid #fff;
+        }
+        .baidumap-ico {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 16%;
+            height: 100%;
+        }
+        .hotel-detail-location .baidumapIco,.hotel-detail-location.map {
+            display: block;
+        }
+        .hotel-detail-location .baidumapIco {
+            width:0.906rem;
+            height:0.8125rem;
+            background-image:url($ctx/hotel/img/reserve_icons.png);
+            background-size:2.745rem 4.87rem;
+            vertical-align:middle;
+            background-position:-1.083rem -3.23rem;
+            margin: 0.3rem 0 0.2rem 1rem;
+        }
+        .hotel-detail-location .map {
+            font-size: 0.7rem;
+            margin-left: 0.7rem;
+        }
+        .mobile-button {
+            width: 100%;
+            height: 2.2rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 333;
+        }
+        .mobile-button .button-type {
+            position: relative;
+            height: 2.2rem;
+            width: 50%;
+            float: left;
+            line-height: 2.2rem;
+            color: #fff;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .button-1 {
+            background-color: #ff9125;
+        }
+        .button-2 {
+            background-color: #f36523;
+        }
+        .mobile-btn {
+            width: 100%;
+            position: relative;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            color: #fff;
+            font-size: 0.8rem;
+            text-align: center;
+            background-color: #ff9125;
+        }
+        .mobile-btn em {
+            position: absolute;
+            top:0;
+            left: 37%;
+        }
+        .mobile-ico {
+            position: absolute;
+            left: 24%;
+            top: 0.55rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            background: url("$ctx/hotel/img/phone-ico.png") center center no-repeat;
+            background-size: cover;
+        }
+        .button-type em {
+            position: absolute;
+            top:0;
+            left: 37%;
+        }
+        .service-btn {
+            width: 100%;
+            height: 2.2rem;
+            background-color: #f36523;
+            color: #fff;
+            position: fixed;
+            bottom:0;
+            left: 0;
+            z-index: 333;
+        }
+        .service-btn .mobile-ico {
+            left: 31%;
+        }
+        .service-btn em {
+            position: absolute;
+            font-size: 0.8rem;
+            top:0.6rem;
+            left: 40%;
+        }
+        .fake {
+            display: block;
+            width: 100%;
+            height: 2.4rem;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<input name="openid" id="open_id" type="hidden" value="$!openid" />
+<div class="statebox clearfix">
+    <a href="$ctx/hotel/wx/v1/user/queryOrderList?openid=$!openid&status=&sorttype=" class="lastStep"><i></i></a>
+    <span class="thetittle">订单详情</span>
+    <a href="$ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+</div>
+<div class="book-hotel-details">
+    <div class="hotel-detail-title">
+        <a href="javascript:;">
+            <h3 class="inlineblock" data-hotelId="$!result.data.hotel.hotel_id">$!result.data.hotel.name</h3>
+        </a>
+    </div>
+    <div class="hotel-detail-more">
+        <p class="hotel-detail-location">
+            <input type="hidden" id="order-lat" value="$!result.data.hotel.lat" >
+            <input type="hidden" id="order-lng" value="$!result.data.hotel.lng" >
+            <i class="inlineblock"></i><em class="inlineblock address-hotel">$!result.data.hotel.address_title</em>
+            <span class="inlineblock baidumap-ico"><span class="baidumapIco"></span><span class="map">地图</span></span>
+        </p>
+        <div class="hotel-detail-advantage">
+            <p>价格描述： $!result.data.order.price_subtitle</p>
+            <p>房型：$!result.data.order.order_subtitle</p>
+            <p>订单总价： $!result.data.order.pay_total_show</p>
+            <p>预留电话：$!result.data.order.mobilephone</p>
+            <p>订单状态：$!result.data.order.status_show</p>
+            <p class="invoiceType" data-invoiceId="$!result.data.order.is_invoice">发票类型：<em class="inlineblock"></em></p>
+            <input type="hidden" id="orderStatusId" data-orderStatus="$!result.data.order.status">
+        </div>
+    </div>
+</div>
+<div class="book-info">
+    <div class="book-info-title">预定信息</div>
+    <div class="book-info-detail">
+        <table class="book-info-list" data-orderId="$!result.data.order.order_id">
+            <tr>
+                <td class="td-l">入住人</td>
+                <td class="td-r"> $!result.data.order.true_name</td>
+            </tr>
+            <tr>
+                <td class="td-l">预定时间</td>
+                <td class="td-r"> $!result.data.order.create_time_show</td>
+            </tr>
+            <tr>
+                <td class="td-l">订单号</td>
+                <td class="td-r">$!result.data.order.order_no</td>
+            </tr>
+            #if($!result.data.order.is_invoice == 2)
+                <tr>
+                    <td class="td-l">发票抬头</td>
+                    <td class="td-r">$!result.data.invoice.title</td>
+                </tr>
+                <tr>
+                    <td class="td-l">发票收取人</td>
+                    <td class="td-r">$!result.data.invoice.true_name</td>
+                </tr>
+                <tr>
+                    <td class="td-l">发票收取电话</td>
+                    <td class="td-r">$!result.data.invoice.mobilephone</td>
+                </tr>
+                <tr>
+                    <td class="td-l">发票地址</td>
+                    <td class="td-r">$!result.data.invoice.pcd,$!result.data.invoice.address</td>
+                </tr>
+                <tr>
+                    <td class="td-l bor-bot-white">注明离店时间</td>
+                    <td class="td-r bor-bot-white"> #if($!result.data.invoice.is_timedetail) 注明 #else 不注明
+                #end</td>
+                </tr>
+            #end
+        </table>
+        <div class="mobile-button">
+        #*状态确定*#
+        #*预付未支付且待支付（可点击确认支付也可以取消）*#
+            #if($!result.data.order.status == 10 && $!result.data.order.is_payment ==0 && $!result.data.order.price_type == 'adv')
+                    <div class="button-1 button-type status-10">
+                        <em class="inlineblock">立即支付</em>
+                    </div>
+                    <div class="button-2 button-type status-cancel">
+                        <em class="inlineblock">取消订单</em>
+                    </div>
+            #*预付待入住订单（可点击确认入住）*#
+            #elseif($!result.data.order.status == 30 && $!result.data.order.price_type =='adv')
+                #if($!result.data.hotel.telephone == '')
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #else
+                #*有酒店电话*#
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.hotel.telephone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系酒店</em>
+                        </div>
+                    </a>
+                #end
+            #*已取消订单*#
+            #elseif($!result.data.order.status == 50)
+                <a href="tel:$!result.data.service_phone">
+                    <div class="service-btn">
+                        <span class="inlineblock mobile-ico"></span>
+                        <em class="inlineblock">联系客服</em>
+                    </div>
+                </a>
+            #*已失效订单*#
+            #elseif($!result.data.order.status == 70)
+                <a href="tel:$!result.data.service_phone">
+                    <div class="service-btn">
+                        <span class="inlineblock mobile-ico"></span>
+                        <em class="inlineblock">联系客服</em>
+                    </div>
+                </a>
+            #*现付待处理（可取消但不能出现酒店电话）*#
+            #elseif($!result.data.order.status == 20 && $!result.data.order.price_type =='cash')
+                <div class="button-1 button-type status-cancel">
+                    <em class="inlineblock">取消订单</em>
+                </div>
+                <a href="tel:$!result.data.service_phone">
+                    <div class="button-2 button-type">
+                        <span class="inlineblock mobile-ico"></span>
+                        <em class="inlineblock">联系客服</em>
+                    </div>
+                </a>
+            #*现付待入住（点击不可取消订单）*#
+            #elseif($!result.data.order.status == 30 && $!result.data.order.price_type =='cash')
+                #if($!result.data.hotel.telephone == '')
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #else
+                #*有酒店电话*#
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.hotel.telephone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系酒店</em>
+                        </div>
+                    </a>
+                #end
+            #*预付待处理（可以取消但是不能出现酒店电话）*#
+            #elseif($!result.data.order.status == 20 && $!result.data.order.price_type =='adv')
+                <div class="button-1 button-type status-cancel">
+                    <em class="inlineblock">取消订单</em>
+                </div>
+                <a href="tel:$!result.data.service_phone">
+                    <div class="button-2 button-type">
+                        <span class="inlineblock mobile-ico"></span>
+                        <em class="inlineblock">联系客服</em>
+                    </div>
+                </a>
+            #*预付待入住（点击可取消订单）*#
+            #elseif($!result.data.order.status == 30 && $!result.data.order.price_type =='adv')
+                #if($!result.data.hotel.telephone == '')
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #else
+                #*有酒店电话*#
+                    <div class="button-1 button-type status-30">
+                        <em class="inlineblock">确认入住</em>
+                    </div>
+                    <a href="tel:$!result.data.hotel.telephone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系酒店</em>
+                        </div>
+                    </a>
+                #end
+            #*已入住*#
+            #elseif($!result.data.order.status == 40)
+                #if($!result.data.hotel.telephone == '')
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="service-btn">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #else
+                    <a href="tel:$!result.data.hotel.telephone">
+                        <div class="button-1 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系酒店</em>
+                        </div>
+                    </a>
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #end
+            #*其他状态的订单*#
+            #else
+                #if($!result.data.hotel.telephone == '')
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="service-btn">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #else
+                    <a href="tel:$!result.data.hotel.telephone">
+                        <div class="button-1 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系酒店</em>
+                        </div>
+                    </a>
+                    <a href="tel:$!result.data.service_phone">
+                        <div class="button-2 button-type">
+                            <span class="inlineblock mobile-ico"></span>
+                            <em class="inlineblock">联系客服</em>
+                        </div>
+                    </a>
+                #end
+            #end
+        </div>
+    </div>
+</div>
+<em class="fake"></em>
+    #parse("/hotel/layout/include/footer_js.vm")
+<script>
+    $(function() {
+        var invoiceId = $('.invoiceType').attr('data-invoiceId');
+        if(invoiceId == 1) {
+            $('.invoiceType em').html('酒店前台索取');
+        }else if(invoiceId == 2) {
+            $('.invoiceType em').html('开发票');
+        }else if(invoiceId == 3) {
+            $('.invoiceType em').html('不开发票');
+        }else {
+            $('.invoiceType em').html('无法确认发票状态');
+        }
+    });
+</script>
+<script src="$ctx/hotel/js/account/myOrder/orderDetail.js?v=${jsVersion}"></script>
+</body>
+</html>

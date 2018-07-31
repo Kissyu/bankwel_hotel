@@ -1,0 +1,130 @@
+#parse("/hotel/layout/include/header.vm")
+    <input name="openid" id="open_id" type="hidden" value="$!openid" />
+    <input type="hidden" value="$!result.data.hotel.hotel_id" id="hotelId">
+    <input type="hidden" value="$!result.data.house.price_id" id="priceId">
+    <input type="hidden" value="$!result.data.house.house_id" id="houseId">
+    <input type="hidden" value="$!result.data.house.price_type" id="priceType">
+    <input type="hidden" value="$!result.data.comInvList" id="comInfoList">
+    <input type="hidden" value="$!result.data.lastInv" id="lastInv">
+
+    <div class="statebox clearfix">
+        <a href="javascript:;" class="lastStep"><i></i></a>
+        <span class="thetittle nowrap-text" data-hotelId="$!result.data.hotel.hotel_id">$!result.data.hotel.name</span>
+        <a href="$!ctx/hotel/wx/v1/user/userCenterMain?openid=$!openid" class="personalCenter fr"><i class="myIcon"></i>我的</a>
+    </div>
+    <div class="fake"></div>
+    <div class="reserveInfo">
+        <i class="leftGear"></i>
+        <i class="rightGear"></i>
+        <p class="houseType" data-houseId="$!result.data.house.house_id">$!result.data.house.name</p>
+        <div class="houseIntro clearfix">
+            <div>#* class="fl"*#
+                <span>$!result.data.house.house_title</span>
+                <span>$!result.data.house.price_title</span>
+                <span>$!result.data.house.special_desc</span>
+            </div>
+            #*<a href="javascript:;" class="houseInfo fr" id="houseDetail">房型详情<em class="rightBtn gohouse fr"></em></a>*#
+        </div>
+        #*<div class="reserveTime clearfix">
+            <div class="fl">
+                <span>入住：<i class="startday" data-start=""></i></span>
+                <span> 离店：<i class="endday" data-end=""></i></span>
+                <span><i class="totalday">1</i>晚</span>
+            </div>
+            <a href="javascript:;" class="houseInfo modifyBtn open-popup fr" data-popup=".modipopup">修改 <em class="rightBtn gohouse fr"></em></a>
+        </div>*#
+    </div>
+    <div class="orderInfo">
+        <div class="orderItem clearfix">
+            <span class="itemName fl">房间数</span>
+            <div class="neednum fr">
+                <a href="javascript:;" class="subbtn">-</a>
+                <span class="roomnum">1</span>
+                <a href="javascript:;"  class="addbtn">+</a>
+            </div>
+        </div>
+        <input type="hidden" id="userName" value="$!result.data.user.true_name" />
+        <div class="nameinpbox clearfix">
+            <span class="itemName lodger fl">入住人</span>
+            <div class="nameinput fr" id="lodgerList">
+                <i class="goselectLodger "></i>
+                <p class="noBorderB"><input type="text" value="$!result.data.user.true_name" name="contact" readonly placeholder="姓名，每间只需选择1人" /></p>
+            </div>
+        </div>
+        <div class="orderItem clearfix">
+            <span class="itemName fl">联系方式</span>
+            <div class="itemContent fr">
+                <input type="tel" name="mobile" maxlength="11" id="mobile" placeholder="用于接收确认短信" value="$!result.data.user.mobilephone"/>
+            </div>
+        </div>
+        <div class="nameinpbox clearfix">
+            <span class="itemName fl">预留时间</span>
+            <div class="itemContent fr">
+                <input type="text" id="reserveTime" class="itemDetail" />
+                <i class="gotoselect"></i>
+            </div>
+        </div>
+    </div>
+    <div class="otherNeeds">
+        <div class="nameinpbox clearfix">
+            <span class="itemName fl">发票</span>
+            <div class="itemContent fr" id="writeInvoice">
+                <span href="javascript:;" class="itemDetail" id="invoiceDetail"></span>
+                <i class="gotoselect"></i>
+            </div>
+        </div>
+        <div class="nameinpbox specialNeed clearfix">
+            <span class="itemName fl">特别要求</span>
+            <div class="itemContent fr">
+                <input type="text" id="specialNeed" class="specialNeedInp itemDetail" />
+            </div>
+        </div>
+    </div>
+    <div class="new-main ordertip ">
+        <p>特别提示：</p>
+        #foreach($!item in $!result.data.specialDesc)
+            <p>$velocityCount）$item.desc</p>
+        #end
+    </div>
+    <div class="new-main submitOrder clearfix">
+        <p class="totalCost fl">总额：<span>$!result.data.house.total_price</span></p>
+        <div class="fr">
+            <a href="javascript:;" class="costDetail">费用明细 &gt;</a>
+            <a href="javascript:;" class="suOrderBtn fr">提交订单</a>
+        </div>
+    </div>
+
+    <!-- 费用明细的弹出层 --- start-->
+    <div class="mask"></div>
+    <div class="costLayer">
+        <div class="costDetailBox">
+            <h5>费用明细</h5>
+            <dl class="roomCharge">
+                <dt>房费</dt>
+                #foreach($!priceItem in $!result.data.priceList)
+                    <dd class="clearfix">
+                        <span class="fl">$!priceItem.price_date</span>
+                        <span class="dayCost fr">¥ $!priceItem.price×1</span>
+                    </dd>
+                #end
+
+                #*<dd class="clearfix">
+                    <span class="fl">2016-09-02</span>
+                    <span class="dayCost fr">¥1234</span>
+                </dd>*#
+            </dl>
+            #*<div class="addtionalPro">
+                <span class="fl"> 附加产品</span>
+                <span class="dayCost fr">¥0</span>
+            </div>*#
+            <div class="totalCharge">总额 <span>$!result.data.house.total_price</span></div>
+        </div>
+    </div>
+    <!-- 费用明细的弹出层 --- end-->
+    #parse("/hotel/layout/include/footer_js.vm")
+    <script src="$!ctx/hotel/js/reserve/reserve.js?v=${jsVersion}"></script>
+    #*#parse("/hotel/layout/include/midiCheckInOut.vm")*#
+    <script>
+    </script>
+</body>
+</html>
